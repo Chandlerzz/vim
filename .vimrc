@@ -27,33 +27,7 @@ let g:netrw_browse_split = 4
 let g:netrw_lists = 3
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
-let @a=""
-let @b=""
-let @c="console.log()"
-let @d=""
-let @f=""
-let @e=""
-let @j=""
-let @h=""
-let @i=""
-let @j=""
-let @k=""
-let @l=""
-let @m=""
-let @n=""
-let @o=""
-let @p=""
-let @q=""
-let @r=""
-let @s=""
-let @t=""
-let @u=""
-let @v=""
-let @w=""
-let @x=""
-let @y=""
-let @z=""
-nnoremap <leader>c iconsole.log()<Esc>i
+inoremap cl console.log()<Esc>i
 nnoremap <leader>cc iselect * from  where 1+1<Esc>0fmla
 nnoremap <leader>z V%"zy% 
 cmap w!! w !sudo tee > /dev/null %
