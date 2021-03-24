@@ -1,3 +1,5 @@
+set foldmethod=indent
+set nofoldenable
 set number
 set so=5
 set laststatus=2
@@ -8,10 +10,12 @@ nnoremap <c-s> :w<CR>
 vmap <c-s> <Esc><c-s>gv
 imap <c-s> <Esc><c-s>
 """ move to html tab to insert word in normal mode
+nnoremap <leader>m :marks<cr>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 map <C-right> <ESC>:bn<CR>
 map <C-left> <ESC>:bp<CR>
+noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
 autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
 autocmd FileType python     nnoremap <buffer> <localleader>c I#<esc>
 autocmd FileType python     :iabbrev <buffer> iff if:<left>
@@ -40,18 +44,8 @@ endif " has aoutocmd
 call plug#begin('~/.vim/bundle')
 Plug 'mattn/emmet-vim'
 Plug 'chemzqm/wxapp.vim'
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 call plug#end()
-
-
-
-
-
-
-
-
-
-
-
 
 
 let g:user_emmet_settings = {

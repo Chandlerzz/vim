@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =6
+let g:netrw_dirhistcnt =8
+let g:netrw_dirhist_8='/home/chandlerxu/vim/.vim/pack/plugins/start/vim-vue'
+let g:netrw_dirhist_7='/home/chandlerxu/vim/.vim/bundle/emmet-vim'
 let g:netrw_dirhist_6='/mnt/d/javascript_program/日升大学小程序/applet-student/component/teacher'
 let g:netrw_dirhist_5='/mnt/d/javascript_program/日升大学小程序/applet-student/component'
 let g:netrw_dirhist_4='/mnt/d/javascript_program/日升大学小程序/applet-student'
@@ -8,5 +10,3 @@ let g:netrw_dirhist_2='/mnt/d/javascript_program/日升大学小程序/applet-st
 let g:netrw_dirhist_1='/mnt/d/javascript_program/日升大学小程序/applet-student'
 let g:netrw_dirhist_0='/mnt/d/javascript_program/日升大学小程序/applet-student/pages'
 let g:netrw_dirhist_9='/mnt/d/javascript_program/日升大学小程序/applet-student'
-let g:netrw_dirhist_8='/mnt/d/javascript_program/物流小程序/chandler-driver-demo/src/pages/index'
-let g:netrw_dirhist_7='/mnt/d/javascript_program/物流小程序/chandler-driver-demo/src/pages'
