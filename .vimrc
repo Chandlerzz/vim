@@ -1,8 +1,12 @@
+" code fold
+set foldmethod=indent
+set nofoldenable
 set number
 set so=5
 set laststatus=2
 let mapleader = "-"
 let maplocalleader = "\\"
+noremap <leader>m :marks<CR>
 imap jj <esc>  
 nnoremap <c-s> :w<CR>
 vmap <c-s> <Esc><c-s>gv
@@ -39,6 +43,7 @@ if has ('autocmd')
 endif " has aoutocmd
 call plug#begin('~/.vim/bundle')
 Plug 'mattn/emmet-vim'
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'chemzqm/wxapp.vim'
 call plug#end()
 
@@ -92,3 +97,4 @@ let g:user_emmet_settings = {
   \   }
   \ },
   \}
+
