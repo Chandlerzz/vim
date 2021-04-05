@@ -12,6 +12,7 @@ imap <c-s> <Esc><c-s>
 """ move to html tab to insert word in normal mode
 nnoremap <leader>m :marks<cr>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>bv :vsplit ~/.bashrc<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 map <C-right> <ESC>:bn<CR>
 map <C-left> <ESC>:bp<CR>
