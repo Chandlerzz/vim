@@ -5,7 +5,6 @@ set so=5
 set laststatus=2
 let mapleader = "-"
 let maplocalleader = "\\"
-""test
 imap jj <esc>  
 nnoremap <c-s> :w<CR>
 vmap <c-s> <Esc><c-s>gv
