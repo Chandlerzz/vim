@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 " code fold
+=======
+>>>>>>> 47cdab057d7c019f5ad295fbda0f40c236352977
 set foldmethod=indent
 set nofoldenable
 set number
@@ -12,14 +15,12 @@ nnoremap <c-s> :w<CR>
 vmap <c-s> <Esc><c-s>gv
 imap <c-s> <Esc><c-s>
 """ move to html tab to insert word in normal mode
+nnoremap <leader>m :marks<cr>
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 map <C-right> <ESC>:bn<CR>
 map <C-left> <ESC>:bp<CR>
-autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
-autocmd FileType python     nnoremap <buffer> <localleader>c I#<esc>
-autocmd FileType python     :iabbrev <buffer> iff if:<left>
-autocmd FileType javascript :iabbrev <buffer> iff if ()<left>
+noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
 syntax on
 
 let g:syntastic_always_populate_loc_list = 1
@@ -45,18 +46,8 @@ call plug#begin('~/.vim/bundle')
 Plug 'mattn/emmet-vim'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'chemzqm/wxapp.vim'
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 call plug#end()
-
-
-
-
-
-
-
-
-
-
-
 
 
 let g:user_emmet_settings = {
