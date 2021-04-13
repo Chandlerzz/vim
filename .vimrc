@@ -6,6 +6,7 @@ set laststatus=2
 let mapleader = "-"
 let maplocalleader = "\\"
 noremap <leader>m :marks<CR>
+xnoremap <leader>p "_dp
 imap jj <esc>  
 nnoremap <c-s> :w<CR>
 vmap <c-s> <Esc><c-s>gv
