@@ -1,3 +1,9 @@
+""ctags config
+set tags=tags
+set autochdir
+""leaderf gtags, but I don't know how to use it.
+let g:Lf_GtagsAutoGenerate = 1
+let g:Lf_Gtagslabel = 'native-pygments'
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -15,8 +21,12 @@ imap jj <esc>
 nnoremap <c-s> :w<CR>
 vmap <c-s> <Esc><c-s>gv
 imap <c-s> <Esc><c-s>
-""" move to html tab to insert word in normal mode
+"" clipbord map
+inoremap <C-v> <ESC>"+pa
+vnoremap <C-c> "+y
+vnoremap <C-d> "+d
 nnoremap <leader>m :marks<cr>
+""" move to html tab to insert word in normal mode
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>bv :vsplit ~/.bashrc<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
