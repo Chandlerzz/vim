@@ -1,6 +1,6 @@
 ""ctags config
 set tags=tags
-set autochdir
+"set autochdir
 ""leaderf gtags, but I don't know how to use it.
 let g:Lf_GtagsAutoGenerate = 1
 let g:Lf_Gtagslabel = 'native-pygments'
