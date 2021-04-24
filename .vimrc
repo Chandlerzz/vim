@@ -4,7 +4,7 @@ set tags=tags
 ""leaderf gtags, but I don't know how to use it.
 "let g:Lf_GtagsAutoGenerate = 1
 "let g:Lf_Gtagslabel = 'native-pygments'
-silent !if [ -z "$(cat .gitignore | grep .man)" ]; then echo .man >> .gitignore; fi
+silent !if [ -z "$(cat .gitignore | grep .man)" ]; then cat .gitignore && echo .man >> .gitignore; fi
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
