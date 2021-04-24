@@ -2,8 +2,8 @@
 set tags=tags
 "set autochdir
 ""leaderf gtags, but I don't know how to use it.
-let g:Lf_GtagsAutoGenerate = 1
-let g:Lf_Gtagslabel = 'native-pygments'
+"let g:Lf_GtagsAutoGenerate = 1
+"let g:Lf_Gtagslabel = 'native-pygments'
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -29,7 +29,7 @@ nnoremap <leader>m :marks<cr>
 """ move to html tab to insert word in normal mode
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>bv :vsplit ~/.bashrc<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>sv :vsplit .man<cr>
 map <C-right> <ESC>:bn<CR>
 map <C-left> <ESC>:bp<CR>
 noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
