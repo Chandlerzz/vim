@@ -4,7 +4,7 @@ set tags=tags
 ""leaderf gtags, but I don't know how to use it.
 "let g:Lf_GtagsAutoGenerate = 1
 "let g:Lf_Gtagslabel = 'native-pygments'
-silent !if [ -z "$(cat .gitignore | grep .man)" ]; then cat .gitignore >> /dev/null && echo -e "\n.man" >> .gitignore; fi
+silent !if [ -z "$(cat .gitignore | grep .man )" ]; then cat .gitignore >> /dev/null && echo -e "\n.man" >> .gitignore; fi
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -57,6 +57,8 @@ if has ('autocmd')
 endif " has aoutocmd
 call plug#begin('~/.vim/bundle')
 Plug 'mattn/emmet-vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'chemzqm/wxapp.vim'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
@@ -101,15 +103,23 @@ let g:user_emmet_settings = {
   \   }
   \ },
   \}
-function! SuperTab()
-  let l:part = strpart(getline('.'),col('.')-2,1)
-  if (l:part =~ '^\W\?$')
-      return "\<Tab>"
-  else
-      return "\<C-n>"
-  endif
-endfunction
+" function! SuperTab()
+"   let l:part = strpart(getline('.'),col('.')-2,1)
+"   if (l:part =~ '^\W\?$')
+"       return "\<Tab>"
+"   else
+"       return "\<C-n>"
+"   endif
+" endfunction
 
-imap <Tab> <C-R>=SuperTab()<CR>
+" imap <Tab> <C-R>=SuperTab()<CR>
 
+"gger configuration. You need to change this to something other than <tab> if you use one of the following:
+" - https://github.com/Valloric/YouCompleteMe
+"   " - https://github.com/nvim-lua/completion-nvim
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
+" If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
