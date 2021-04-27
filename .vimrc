@@ -3,8 +3,7 @@ set tags=tags
 "set autochdir
 ""leaderf gtags, but I don't know how to use it.
 "let g:Lf_GtagsAutoGenerate = 1
-"let g:Lf_Gtagslabel = 'native-pygments'
-silent !if [ -z "$(cat .gitignore | grep .man )" ]; then cat .gitignore >> /dev/null && echo -e "\n.man" >> .gitignore; fi
+"silent !if [-d ".gitignore"];then if  [ -z "$(cat .gitignore | grep .man )" ]; then cat .gitignore >> /dev/null && echo -e "\n.man" >> .gitignore; fi fi
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
