@@ -28,11 +28,6 @@ vnoremap <C-d> "+d
 nnoremap <leader>m :marks<cr>
 """ move to html tab to insert word in normal mode
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-let diary = system("date +'%Y/%m/%d'")
-let $diarypath = "~/report/" . diary
-let $diarypath1=$diarypath[:18]
-silent !bash $HOME/script/bash_script/diary.sh
-nnoremap <leader>dv :vsplit $diarypath1<cr>
 nnoremap <leader>bv :vsplit ~/.bashrc<cr>
 nnoremap <leader>sv :vsplit .man<cr>
 map <C-right> <ESC>:bn<CR>
