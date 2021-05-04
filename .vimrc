@@ -1,9 +1,11 @@
+syntax on
 ""ctags config
 set tags=tags
 "set autochdir
 ""leaderf gtags, but I don't know how to use it.
 "let g:Lf_GtagsAutoGenerate = 1
 "silent !if [-d ".gitignore"];then if  [ -z "$(cat .gitignore | grep .man )" ]; then cat .gitignore >> /dev/null && echo -e "\n.man" >> .gitignore; fi fi
+silent !perl ~/script/perl_script/ignore.pl
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -33,7 +35,12 @@ nnoremap <leader>sv :vsplit .man<cr>
 map <C-right> <ESC>:bn<CR>
 map <C-left> <ESC>:bp<CR>
 noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
-syntax on
+"" cmdline map
+cnoremap <C-A> <Home>
+cnoremap <C-F> <Right>
+cnoremap <C-B> <Left>
+cnoremap <Esc>b <S-Left>
+cnoremap <Esc>d <S-Right>
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -44,10 +51,6 @@ let g:netrw_browse_split = 4
 let g:netrw_lists = 3
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
-inoremap cl console.log()<Esc>i
-nnoremap <leader>cc iselect * from  where 1+1<Esc>0fmla
-nnoremap <leader>z V%"zy% 
-cmap w!! w !sudo tee > /dev/null %
 if has ('autocmd')
 	augroup Reload_Vimrc
 	autocmd!
@@ -102,16 +105,6 @@ let g:user_emmet_settings = {
   \   }
   \ },
   \}
-" function! SuperTab()
-"   let l:part = strpart(getline('.'),col('.')-2,1)
-"   if (l:part =~ '^\W\?$')
-"       return "\<Tab>"
-"   else
-"       return "\<C-n>"
-"   endif
-" endfunction
-
-" imap <Tab> <C-R>=SuperTab()<CR>
 
 "gger configuration. You need to change this to something other than <tab> if you use one of the following:
 " - https://github.com/Valloric/YouCompleteMe
