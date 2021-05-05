@@ -4,7 +4,6 @@ set tags=tags
 "set autochdir
 ""leaderf gtags, but I don't know how to use it.
 "let g:Lf_GtagsAutoGenerate = 1
-"silent !if [-d ".gitignore"];then if  [ -z "$(cat .gitignore | grep .man )" ]; then cat .gitignore >> /dev/null && echo -e "\n.man" >> .gitignore; fi fi
 silent !perl ~/script/perl_script/ignore.pl
 set tabstop=4
 set softtabstop=4
