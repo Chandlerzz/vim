@@ -13,6 +13,18 @@ function s:Man(file) abort
   "windo diffthis
 endfunction
 
+function s:Todo() abort
+  let $name = system("pwd | awk -F '/' '{ print $NF }'")
+  let $length = len($name)-2
+  let $name1 = $name[:$length]
+  let $file = "~/todo" . "/" . $name1 
+  echom $name
+  silent ![[ -d ~/todo ]] && echo "nothing" || mkdir -p ~/todo
+  silent !touch $file
+  execute "vsplit" $file
+  " windo diffthis
+endfunction
+
 "Dairy every day record what stuff you have done today
 function s:diary() abort
     let diary = system("date +'%Y/%m/%d'")
@@ -23,5 +35,6 @@ function s:diary() abort
 endfunction
 
 command -nargs=0  Diary call s:diary() 
+command -nargs=0  Todo  call s:Todo() 
 command -nargs=1 -complete=file Man call s:Man(<f-args>)
 
