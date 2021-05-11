@@ -62,6 +62,7 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 Plug 'chemzqm/wxapp.vim'
+Plug 'Chandlerzz/vim-vue'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 call plug#end()
 
