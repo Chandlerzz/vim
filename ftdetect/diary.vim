@@ -2,8 +2,8 @@ let diary = system("date +'%Y/%m/%d'")
 let $diarypath = "~/report/" . diary
 let $diarypath1=$diarypath[:18]
 silent !bash $HOME/script/bash_script/diary.sh
-nnoremap <leader>dv :vsplit $diarypath1<CR>
-nnoremap <leader>av :execute "Diary"<CR>
+nnoremap <leader>dv :split $diarypath1<CR>
+"nnoremap <leader>dv :execute "Diary"<CR>
 
 " Manual file myself Usage:Man myself
 function s:Man(file) abort
@@ -31,7 +31,7 @@ function s:diary() abort
     let $diarypath = "~/report/" . diary
     let $diarypath1=$diarypath[:18]
     silent !bash $HOME/script/bash_script/diary.sh
-    execute "vsplit" $diarypath1
+    execute "split" $diarypath1
 endfunction
 
 command -nargs=0  Diary call s:diary() 
