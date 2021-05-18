@@ -12,3 +12,7 @@ vim -u NONE -c "helptags commentary/doc" -c q
 cd ~/.vim/pack/tpope/start
 git clone https://tpope.io/vim/fugitive.git
 vim -u NONE -c "helptags fugitive/doc" -c q
+
+[[ -L ~/.vim/plugin ]] || ln -s ~/vim/plugin ~/.vim/plugin 
+[[ -L ~/.vim/autoload ]] || ln -s ~/vim/autoload ~/.vim/autoload 
+[[ -L ~/.vim/ftdetect ]] || ln -s ~/vim/ftdetect ~/.vim/ftdetect 
