@@ -9,8 +9,6 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-set foldmethod=indent
-set nofoldenable
 set number
 set so=5
 set laststatus=2
@@ -67,6 +65,7 @@ if has ('autocmd')
 	augroup end
 endif " has aoutocmd
 call plug#begin('~/.vim/bundle')
+Plug 'scrooloose/nerdcommenter'
 Plug 'mattn/emmet-vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
