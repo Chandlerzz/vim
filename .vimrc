@@ -124,3 +124,19 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 " let g:UltiSnipsEditSplit="vertical"
+
+" perl 
+let perl_fold =1
+let perl_fold_anonymous_subs=1
+ " let perl_include_pod = 1
+ " unlet perl_no_scope_in_variables
+ " unlet perl_no_extended_vars
+ " unlet perl_string_as_statement
+ " unlet perl_no_sync_on_sub
+ " unlet perl_no_sync_on_global_var
+ " let perl_sync_dist = 100
+ " let perl_fold_blocks=1
+ " let perl_nofold_packages=1
+ " let perl_nofold_subs=1
+ " let perl_no_subprototype_error=1
+ 
