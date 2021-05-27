@@ -1,7 +1,6 @@
 syntax on
 ""ctags config
 set tags=tags
-"set autochdir
 ""leaderf gtags, but I don't know how to use it.
 "let g:Lf_GtagsAutoGenerate = 1
 silent !perl ~/script/perl_script/ignore.pl
@@ -31,9 +30,10 @@ vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 "" clipbord map
 
-inoremap <C-v> <ESC>"+pa
+inoremap <C-v> <ESC>:set paste<CR>"+p:set nopaste<CR>a
 vnoremap <C-c> "+y
 vnoremap <C-d> "+d
+
 nnoremap <leader>m :marks<cr>
 """ move to html tab to insert word in normal mode
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>

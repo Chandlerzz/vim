@@ -1,7 +1,11 @@
 "" bufferSel
+nnoremap <leader>bb :execute 'Bss'<CR>
+function! BufSelPwd()
+    let pwd = getcwd()
+    call BufSel(pwd)
+endfunction
+
 function! BufSel(pattern)
-"" get pwd	
-  let pwd = getcwd()
   let bufcount = bufnr("$")
   let currbufnr = 1
   let nummatches = 0
@@ -31,3 +35,4 @@ endfunction
 
 "Bind the BufSel() function to a user-command
 command! -nargs=1 Bs :call BufSel("<args>")
+command! -nargs=0 Bss :call BufSelPwd()
