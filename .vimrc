@@ -38,7 +38,6 @@ nnoremap <leader>m :marks<cr>
 """ move to html tab to insert word in normal mode
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>bv :vsplit ~/.bashrc<cr>
-nnoremap <leader>sv :vsplit .man<cr>
 map <C-right> <ESC>:bn<CR>
 map <C-left> <ESC>:bp<CR>
 noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
@@ -50,7 +49,7 @@ cnoremap <Esc>b <S-Left>
 cnoremap <Esc>d <S-Right>
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 2
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 """set the directory presentation

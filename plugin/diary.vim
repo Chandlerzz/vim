@@ -1,4 +1,4 @@
-nnoremap <leader>dv :DiaryBefore<CR>:split $diarypath1<CR>
+nnoremap <leader>dv :DiaryBefore<CR>:split $diarypath1<CR>:set nonumber<CR>
 "nnoremap <leader>dv :execute "Diary"<CR>
 
 " Manual file myself Usage:Man myself
