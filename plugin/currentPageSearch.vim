@@ -1,5 +1,5 @@
 "" bufferSel
-nnoremap <leader>mm :execute 'sch '.expand("<cword>")<CR>
+nnoremap <leader>mm :execute 'Sch '.expand("<cword>")<CR>
 
 function! s:search(pattern)
   let @/ = a:pattern 
@@ -29,4 +29,4 @@ function! s:search(pattern)
 endfunction
 
 "Bind the BufSel() function to a user-command
-command! -nargs=1 sch :call s:search("<args>")
+command! -nargs=1 Sch :call s:search("<args>")

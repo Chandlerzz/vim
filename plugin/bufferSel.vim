@@ -1,8 +1,16 @@
 "" bufferSel
 nnoremap <leader>bb :execute 'Bss'<CR>
+function! NewTab()
+    execute ":tabnew"
+    execute ":tabnew"
+    let @b="-bbgt"
+    @b
+    let g:tabpath = ["/home/chandlerxu/vim","/home/chandlerxu/script","/home/chandlerxu/learn"]
+endfunction
 function! BufSelPwd()
-    let pwd = getcwd()
-    call BufSel(pwd)
+    let tabPageNr = tabpagenr()
+    execute "tcd " .g:tabpath[tabPageNr-1]
+    call BufSel("^[^/]")
 endfunction
 
 function! BufSel(pattern)
@@ -36,3 +44,4 @@ endfunction
 "Bind the BufSel() function to a user-command
 command! -nargs=1 Bs :call BufSel("<args>")
 command! -nargs=0 Bss :call BufSelPwd()
+command! -nargs=0 NewTab :call NewTab()
