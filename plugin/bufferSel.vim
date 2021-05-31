@@ -4,8 +4,7 @@ function! NewTab()
     execute ":tabnew"
     execute ":tabnew"
     let @b="-bbgt"
-    @b
-    let g:tabpath = ["/home/chandlerxu/vim","/home/chandlerxu/script","/home/chandlerxu/learn"]
+    let g:tabpath = ["/mnt/d/javascript_program/risentrain/applet-student","/mnt/d/javascript_program/risentrain/vue-admin","/mnt/d/javascript_program/risentrain/egg-server"]
 endfunction
 function! BufSelPwd()
     let tabPageNr = tabpagenr()
