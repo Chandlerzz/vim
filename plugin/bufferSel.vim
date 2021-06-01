@@ -1,15 +1,19 @@
 "" bufferSel
 nnoremap <leader>bb :execute 'Bss'<CR>
+nnoremap <leader>SetTcd :execute 'SetTcd'<CR>
 function! NewTab()
     execute ":tabnew"
     execute ":tabnew"
-    let @b="-bbgt"
+    let @b="-SetTcd"
     let g:tabpath = ["/mnt/d/javascript_program/risentrain/applet-student","/mnt/d/javascript_program/risentrain/vue-admin","/mnt/d/javascript_program/risentrain/egg-server"]
 endfunction
 function! BufSelPwd()
+    let pwd=getcwd()
+    call BufSel(pwd)
+endfunction
+function! SetTcd()
     let tabPageNr = tabpagenr()
     execute "tcd " .g:tabpath[tabPageNr-1]
-    call BufSel("^[^/]")
 endfunction
 
 function! BufSel(pattern)
@@ -19,9 +23,11 @@ function! BufSel(pattern)
   let firstmatchingbufnr = 0
   while currbufnr <= bufcount
     if(bufexists(currbufnr))
-      let currbufname = bufname(currbufnr)
+      let currbufname = expand('#'.currbufnr.':p') 
+      echo currbufname
+      echo a:pattern
       if(match(currbufname, a:pattern) > -1)
-        echo currbufnr . ": ". bufname(currbufnr)
+        echo currbufnr . ": ".expand('#'.currbufnr.':p') 
         let nummatches += 1
         let firstmatchingbufnr = currbufnr
       endif
@@ -44,3 +50,4 @@ endfunction
 command! -nargs=1 Bs :call BufSel("<args>")
 command! -nargs=0 Bss :call BufSelPwd()
 command! -nargs=0 NewTab :call NewTab()
+command! -nargs=0 SetTcd :call SetTcd()
