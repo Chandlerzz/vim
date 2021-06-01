@@ -24,10 +24,8 @@ function! BufSel(pattern)
   while currbufnr <= bufcount
     if(bufexists(currbufnr))
       let currbufname = expand('#'.currbufnr.':p') 
-      echo currbufname
-      echo a:pattern
       if(match(currbufname, a:pattern) > -1)
-        echo currbufnr . ": ".expand('#'.currbufnr.':p') 
+        echo currbufnr . ": ".expand('#'.currbufnr.':p:.')
         let nummatches += 1
         let firstmatchingbufnr = currbufnr
       endif
