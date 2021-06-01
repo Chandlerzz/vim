@@ -4,7 +4,7 @@ nnoremap <leader>SetTcd :execute 'SetTcd'<CR>
 function! NewTab()
     execute ":tabnew"
     execute ":tabnew"
-    let @b="-SetTcd"
+    let @b="-SetTcdgt"
     let g:tabpath = ["/mnt/d/javascript_program/risentrain/applet-student","/mnt/d/javascript_program/risentrain/vue-admin","/mnt/d/javascript_program/risentrain/egg-server"]
 endfunction
 function! BufSelPwd()
