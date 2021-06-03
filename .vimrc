@@ -68,6 +68,8 @@ if has ('autocmd')
 endif " has aoutocmd
 call plug#begin('~/.vim/bundle')
 Plug 'scrooloose/nerdcommenter'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
 Plug 'morhetz/gruvbox'
 Plug 'SirVer/ultisnips'

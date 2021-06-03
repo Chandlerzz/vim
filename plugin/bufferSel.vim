@@ -1,6 +1,7 @@
 "" bufferSel
 nnoremap <leader>bb :execute 'Bss'<CR>
 nnoremap <leader>SetTcd :execute 'SetTcd'<CR>
+nnoremap <leader>b :execute 'Buffers'<CR>
 function! NewTab()
     execute ":tabnew"
     execute ":tabnew"
