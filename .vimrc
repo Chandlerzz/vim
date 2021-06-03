@@ -4,11 +4,14 @@ set tags=tags
 ""leaderf gtags, but I don't know how to use it.
 "let g:Lf_GtagsAutoGenerate = 1
 silent !perl ~/script/perl_script/ignore.pl
+set path=**
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
 set number
+set relativenumber
+set cmdheight=2
 set so=5
 set laststatus=2
 let mapleader = "-"
@@ -66,6 +69,7 @@ endif " has aoutocmd
 call plug#begin('~/.vim/bundle')
 Plug 'scrooloose/nerdcommenter'
 Plug 'mattn/emmet-vim'
+Plug 'morhetz/gruvbox'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
@@ -73,8 +77,9 @@ Plug 'chemzqm/wxapp.vim'
 Plug 'Chandlerzz/vim-vue'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 call plug#end()
-
-
+colorscheme gruvbox
+set background=dark
+highlight Normal ctermbg=0
 let g:user_emmet_settings = {
   \ 'wxss': {
   \   'extends': 'css',
