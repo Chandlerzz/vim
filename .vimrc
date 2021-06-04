@@ -1,9 +1,9 @@
 syntax on
 ""ctags config
 set tags=tags
+let g:Lf_ShortcutB='<leader>bn'
 ""leaderf gtags, but I don't know how to use it.
 "let g:Lf_GtagsAutoGenerate = 1
-silent !perl ~/script/perl_script/ignore.pl
 set path=**
 set tabstop=4
 set softtabstop=4
