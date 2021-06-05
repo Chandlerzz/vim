@@ -16,3 +16,4 @@ vim -u NONE -c "helptags fugitive/doc" -c q
 [[ -L ~/.vim/plugin ]] || ln -s ~/vim/plugin ~/.vim/plugin 
 [[ -L ~/.vim/autoload ]] || ln -s ~/vim/autoload ~/.vim/autoload 
 [[ -L ~/.vim/ftdetect ]] || ln -s ~/vim/ftdetect ~/.vim/ftdetect 
+[[ -L ~/.vim/syntax ]] || ln -s ~/vim/syntax ~/.vim/syntax 
