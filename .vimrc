@@ -1,4 +1,5 @@
 syntax on
+" set term=screen
 ""ctags config
 set tags=tags
 let g:Lf_ShortcutB='<leader>bn'
@@ -146,3 +147,11 @@ let perl_fold_anonymous_subs=1
  " let perl_nofold_subs=1
  " let perl_no_subprototype_error=1
  
+"" easy switch window 
+ nnoremap <C-j> <C-w>j
+ nnoremap <C-k> <C-w>k
+ nnoremap <C-h> <C-w>h
+ nnoremap <C-l> <C-w>l
+" Map Ctrl + p to open fuzzy find (FZF)
+nnoremap <c-p> :Files<cr>
+
