@@ -16,7 +16,7 @@ set cmdheight=2
 set so=5
 set laststatus=2
 let mapleader = "-"
-let maplocalleader = "\\"
+let maplocalleader = " "
 noremap <leader>m :marks<CR>
 xnoremap <leader>p "_dp
 imap jj <esc>  
