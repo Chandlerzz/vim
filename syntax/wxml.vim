@@ -1,5 +1,5 @@
 nnoremap <localleader>f :execute 'JumpFromWxmlToWxssForSearch'<CR>
-nnoremap <silent> <buffer> <localleader>s :call search('\"[^\"]*\zs\="','')<CR>b
+nnoremap <silent> <buffer> <localleader>s :call search('\"[^\"]*\zs\="','')<CR>
 " todo 
 " first to open the reame directory wxss file and goto gotto the line searched
 "get the absolutepath and find hte wxss and then vsp the wxss file 
