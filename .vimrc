@@ -18,6 +18,7 @@ set laststatus=2
 let mapleader = "-"
 let maplocalleader = " "
 noremap <leader>m :marks<CR>
+nnoremap <c-k>o ZZ
 xnoremap <leader>p "_dp
 imap jj <esc>  
 nnoremap <c-s> :w<CR>
