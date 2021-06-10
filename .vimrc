@@ -1,4 +1,5 @@
 syntax on
+set cfu=CompleteMonths
 " set term=screen
 ""ctags config
 set tags=tags
