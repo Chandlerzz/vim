@@ -22,9 +22,16 @@ endfun
 fun! Compython()
 python3 << EOF
 import json
-with open("/home/chandlerxu/vim/package.json") as f:
+import os
+# todo
+# if the is array just select the first one 
+#if is string or number is record 
+#if is dict dive into it
+jsonFile = os.environ['HOME']+'/vim/package.json'
+with open(jsonFile) as f:
     result = json.load(f)
-print(result)
+    keys=result.keys()
+print(keys)
 EOF
 endfun
 
