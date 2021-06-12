@@ -1,4 +1,4 @@
-fun! CompleteMonths(findstart, base)
+fun! CompleteJson(findstart, base)
 
   if a:findstart
     " locate the start of the word
@@ -100,4 +100,4 @@ vim.vars["completediy"]=lists
 EOF
 endfun
 
-set completefunc=CompleteMonths
+set completefunc=CompleteJson

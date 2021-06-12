@@ -1,5 +1,5 @@
 syntax on
-set cfu=CompleteMonths
+set cfu=CompleteJson
 " set term=screen
 ""ctags config
 set tags=tags
@@ -46,6 +46,8 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>bv :vsplit ~/.bashrc<cr>
 map <C-right> <ESC>:bn<CR>
 map <C-left> <ESC>:bp<CR>
+noremap <leader>man :<C-U><C-R>=printf("Man %s ", expand("<cword>"))<CR>
+noremap <leader>todo :<C-U><C-R>=printf("Todo %s ", expand("<cword>"))<CR>
 noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
 "" cmdline map
 cnoremap <C-A> <Home>
