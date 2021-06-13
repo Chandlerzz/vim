@@ -86,7 +86,7 @@ baseType = {\
         "bool":basedo\
         }
 lists=[]
-jsonFile = os.environ['HOME']+'/vim/package.json'
+jsonFile = os.environ['HOME']+'/tmp/aa.json'
 with open(jsonFile) as f:
     result = json.load(f)
 walk('result')

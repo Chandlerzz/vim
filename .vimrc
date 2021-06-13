@@ -1,6 +1,5 @@
 syntax on
 set cfu=CompleteJson
-" set term=screen
 ""ctags config
 set tags=tags
 let g:Lf_ShortcutB='<leader>bn'
