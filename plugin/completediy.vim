@@ -29,72 +29,16 @@ import json
 import os
 from IPython import embed
 import re
+from jsonwalk import jsonwalk
 
-def whichType(item):
-    typestr=str(type(item))
-    pattern=re.compile("(bool|NoneType|int|str|dict|list|function|float)")
-    wtype=re.search(pattern,typestr).group()
-    if wtype == "list":
-        if len(item)==0:
-            return "emptyDict"
-    if wtype == "dict":
-        if len(item.keys())==0:
-            return "emptyList"
-    return wtype
-
-def cat(origin,key):
-    return origin+"['"+key+"']"
-
-def catList(origin,index):
-    return  origin+"["+index+"]"
-
-def python2javascript(path):
-    pattern=re.compile("\['")
-    pattern1=re.compile("'\]")
-    path=re.sub(pattern,".",path)
-    path=re.sub(pattern1,"",path)
-    return path
-
-def walk(path):
-    result = eval(path)
-    wtype = whichType(result)
-    func=baseType[wtype]
-    func(path)
-
-
-def basedo(path):
-    lists.append(path)
-def listdo(path):
-    result = eval(path)
-    for index in range(len(result)):
-        walk(catList(path,str(index)))
-def dictdo(path):
-    result = eval(path)
-    keys=result.keys()
-    for key in keys:
-        walk(cat(path,key))
-
-baseType = {\
-        "NoneType":basedo,\
-        "int":basedo,\
-        "dict":dictdo,\
-        "str":basedo,\
-        "list":listdo,\
-        "emptyDict":basedo,\
-        "emptyList":basedo,\
-        "float":basedo,\
-        "bool":basedo\
-        }
-lists=[]
-jsonFile = os.environ['HOME']+'/tmp/aa.json'
-with open(jsonFile) as f:
-    result = json.load(f)
-walk('result')
+jwalk = jsonwalk('/tmp/aa.json')
+jwalk.open()
+lists = jwalk.walk('result')
 filet = vim.vars['completefiletype']
 if filet == b'javascript':
     for index in range(len(lists)):
         item=lists[index]
-        item1=python2javascript(item)
+        item1=jwalk.python2javascript(item)
         lists[index]=item1
 vim.vars["completediy"]=lists
 EOF
