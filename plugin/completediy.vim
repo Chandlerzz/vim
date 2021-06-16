@@ -35,7 +35,7 @@ jwalk = jsonwalk('/tmp/aa.json')
 jwalk.open()
 lists = jwalk.walk('result')
 filet = vim.vars['completefiletype']
-if filet == b'javascript':
+if (filet == b'javascript') | (filet == b'vue'):
     for index in range(len(lists)):
         item=lists[index]
         item1=jwalk.python2javascript(item)
