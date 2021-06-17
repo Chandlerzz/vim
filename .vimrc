@@ -1,5 +1,4 @@
 syntax on
-set cfu=CompleteJson
 ""ctags config
 set tags=tags
 let g:Lf_ShortcutB='<leader>bn'

@@ -3,3 +3,5 @@
 " syn region  jsonFold matchgroup=jsonBraces start="\[" end=/]\(\_s\+\ze"\)\@!/ transparent fold
 
 " syn region importfold start="\(import\|require\)" end="^$" fold 
+setlocal completefunc=CompleteJson
+

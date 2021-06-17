@@ -44,4 +44,3 @@ vim.vars["completediy"]=lists
 EOF
 endfun
 
-set completefunc=CompleteJson
