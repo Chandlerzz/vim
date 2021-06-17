@@ -11,7 +11,7 @@ fun! CompleteJson(findstart, base)
   else
       let g:completefiletype=&filetype
     " find months matching with "a:base"
-    call Compython()
+    call s:docomplete()
     " for m in split("Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec")
     let res=[]
     for m in g:completediy 
@@ -22,7 +22,7 @@ fun! CompleteJson(findstart, base)
     return res
   endif
 endfun
-fun! Compython()
+fun! s:docomplete()
 python3 << EOF
 import vim
 import json
@@ -30,11 +30,11 @@ import os
 from IPython import embed
 import re
 from jsonwalk import jsonwalk
+filet = vim.vars['completefiletype']
 
 jwalk = jsonwalk('/tmp/aa.json')
 jwalk.open()
 lists = jwalk.walk('result')
-filet = vim.vars['completefiletype']
 if (filet == b'javascript') | (filet == b'vue'):
     for index in range(len(lists)):
         item=lists[index]
