@@ -71,8 +71,8 @@ if has ('autocmd')
 endif " has aoutocmd
 call plug#begin('~/.vim/bundle')
 Plug 'scrooloose/nerdcommenter'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'
 Plug 'mattn/emmet-vim'
 Plug 'morhetz/gruvbox'
 Plug 'SirVer/ultisnips'
@@ -155,6 +155,5 @@ let perl_fold_anonymous_subs=1
  nnoremap <C-h> <C-w>h
  nnoremap <C-l> <C-w>l
 " Map Ctrl + p to open fuzzy find (FZF)
-nnoremap <c-p> :Files<cr>
 nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
 nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')

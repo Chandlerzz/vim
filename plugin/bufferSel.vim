@@ -1,24 +1,27 @@
 "" bufferSel
-nnoremap <leader>bb :execute 'Bss'<CR>
-nnoremap <leader>SetTcd :execute 'SetTcd'<CR>
-nnoremap <leader>nn :execute 'Buffers'<CR>
+nnoremap <expr> <F4> SelectBuffer() ..'_'
+" xnoremap <expr> <F4> SelectBuffer()
+" doubling <F4> works on a line
+" nnoremap <expr> <F4><F4> CountSpaces() .. '_'
+nnoremap  <leader>bb :execute 'Bss'<CR>
+" nnoremap <leader>SetTcd :execute 'SetTcd'<CR>
 
-function! NewTab()
+function! s:newTab()
     execute ":tabnew"
     execute ":tabnew"
     let @b="-SetTcdgt"
     let g:tabpath = ["/mnt/d/javascript_program/risentrain/applet-student","/mnt/d/javascript_program/risentrain/vue-admin","/mnt/d/javascript_program/risentrain/egg-server"]
 endfunction
-function! BufSelPwd()
+function! s:bufSelPwd()
     let pwd=getcwd()
-    call BufSel(pwd)
+    call s:bufSel(pwd)
 endfunction
-function! SetTcd()
+function! s:setTcd()
     let tabPageNr = tabpagenr()
     execute "tcd " .g:tabpath[tabPageNr-1]
 endfunction
 
-function! BufSel(pattern)
+function! s:bufSel(pattern)
   let bufcount = bufnr("$")
   let currbufnr = 1
   let nummatches = 0
@@ -46,8 +49,68 @@ function! BufSel(pattern)
   endif
 endfunction
 
-"Bind the BufSel() function to a user-command
-command! -nargs=1 Bs :call BufSel("<args>")
-command! -nargs=0 Bss :call BufSelPwd()
-command! -nargs=0 NewTab :call NewTab()
-command! -nargs=0 SetTcd :call SetTcd()
+function SelectBuffer(type = '') abort
+  if a:type == ''
+    set opfunc=SelectBuffer
+    return 'g@'
+  endif
+
+  let sel_save = &selection
+  let reg_save = getreginfo('"')
+  let g:aaa=reg_save
+  let cb_save = &clipboard
+  let visual_marks_save = [getpos("'<"), getpos("'>")]
+
+  try
+    set clipboard= selection=inclusive
+    let commands = #{line: "'[V']y", char: "`[v`]y", block: "`[\<c-v>`]y"}
+    silent exe 'noautocmd keepjumps normal! ' .. get(commands, a:type, '')
+    " echom getreg('"')->count(' ')
+  finally
+  let charr = s:inputtarget()
+  let head=charr[:-2]
+  let tail=charr[-1:-1]
+  let g:aa=head
+  let g:bb=tail
+  if tail =~ "e"
+      silent exe 'e #' ..head 
+  else
+      silent exe 'vsp #' ..head 
+  endif
+    call setreg('"', reg_save)
+    call setpos("'<", visual_marks_save[0])
+    call setpos("'>", visual_marks_save[1])
+    let &clipboard = cb_save
+    let &selection = sel_save
+endtry
+endfunction
+
+function! s:getchar()
+  let c = getchar()
+  if c =~ '^\d\+$'
+    let c = nr2char(c)
+  endif
+  return c
+endfunction
+function! s:inputtarget()
+  let c = s:getchar()
+  while c =~ '^\d\+$'
+    let c .= s:getchar()
+  endwhile
+  if c == " "
+    let c .= s:getchar()
+  endif
+  if c =~ "\<Esc>\|\<C-C>\|\0"
+    return ""
+  else
+    return c
+  endif
+endfunction
+
+"Bind the s:bufSel() function to a user-command
+command! -nargs=1 Bs :call s:bufSel("<args>")
+command! -nargs=0 Bss :call s:bufSelPwd()
+command! -nargs=0 NewTab :call s:newTab()
+" command! -nargs=0 SetTcd :call s:setTcd()
+nnoremap <silent> <Plug>SetTcd  :<C-U>call <SID>setTcd()<CR>
+nmap <leader>SetTcd <Plug>SetTcd
