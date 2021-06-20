@@ -17,6 +17,7 @@ cd ~/.vim/pack/tpope/start
 git clone https://tpope.io/vim/repeat.git
 
 
+[[ -L ~/.vim/.vimrc ]] || ln -s ~/vim/.vimrc ~/.vim/.vimrc 
 [[ -L ~/.vim/plugin ]] || ln -s ~/vim/plugin ~/.vim/plugin 
 [[ -L ~/.vim/autoload ]] || ln -s ~/vim/autoload ~/.vim/autoload 
 [[ -L ~/.vim/ftdetect ]] || ln -s ~/vim/ftdetect ~/.vim/ftdetect 
