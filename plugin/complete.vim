@@ -31,6 +31,10 @@ from IPython import embed
 import re
 from jsonwalk import jsonwalk
 filet = vim.vars['completefiletype']
+cb = vim.current.buffer
+complete_head = cb.vars['complete_head']
+special_head = cb.vars['special_head']
+special_head = special_head.decode()
 
 jwalk = jsonwalk('/tmp/aa.json')
 jwalk.open()
@@ -40,6 +44,11 @@ if (filet == b'javascript') | (filet == b'vue'):
         item=lists[index]
         item1=jwalk.python2javascript(item)
         lists[index]=item1
+if (complete_head == b'0'):
+    lists = [re.sub("result(\[\d*\])?(\.)?","",li) for li in lists]
+else:
+    if (special_head != ""):
+        lists = [re.sub("result(\[\d*\])?",special_head,li) for li in lists]
 vim.vars["completediy"]=lists
 EOF
 endfun
