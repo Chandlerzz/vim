@@ -1,10 +1,16 @@
 syntax on
+set path+=/tmp
+set path+=~/todo
+set path+=~/man
+set path+=~/vim/plugin
+set path+=/mnt/d/javascript_program/risentrain/applet-student
+set path+=/mnt/d/javascript_program/risentrain/vue-admin
+set path+=/mnt/d/javascript_program/risentrain/egg-server
 ""ctags config
 set tags=tags
 let g:Lf_ShortcutB='<leader>bn'
 ""leaderf gtags, but I don't know how to use it.
 "let g:Lf_GtagsAutoGenerate = 1
-set path=**
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -44,8 +50,6 @@ nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>bv :vsplit ~/.bashrc<cr>
 map <C-right> <ESC>:bn<CR>
 map <C-left> <ESC>:bp<CR>
-noremap <leader>man :<C-U><C-R>=printf("Man %s ", expand("<cword>"))<CR>
-noremap <leader>todo :<C-U><C-R>=printf("Todo %s ", expand("<cword>"))<CR>
 noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
 "" cmdline map
 cnoremap <C-A> <Home>
@@ -60,7 +64,7 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 """set the directory presentation
 let g:netrw_browse_split = 4
-let g:netrw_lists = 3
+let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 let g:netrw_winsize = 25
 if has ('autocmd')
