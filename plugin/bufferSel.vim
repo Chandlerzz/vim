@@ -5,9 +5,16 @@ nnoremap <expr> <expr>e SelectBuffer() ..'_'
 " nnoremap <expr> <F4><F4> CountSpaces() .. '_'
 nnoremap  <leader>bb :execute 'Bss'<CR>
 " nnoremap <leader>SetTcd :execute 'SetTcd'<CR>
+autocmd! bufNew * call Test()
 
 function! Test()
     execute "vsp /tmp/aa.chandler"
+    let aa=bufnr("aa.chandler",1)
+    call setbufline(aa,5,pwd)
+    execute "set winwidth=80"
+    execute "normal \<C-L>"
+    let tabnr = gettabinfo(".")
+    let pwd= getcwd()
 endfunction
 function! s:newTab()
     execute ":tabnew"
