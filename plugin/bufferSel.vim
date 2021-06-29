@@ -6,6 +6,9 @@ nnoremap <expr> <expr>e SelectBuffer() ..'_'
 nnoremap  <leader>bb :execute 'Bss'<CR>
 " nnoremap <leader>SetTcd :execute 'SetTcd'<CR>
 
+function! Test()
+    execute "vsp /tmp/aa.chandler"
+endfunction
 function! s:newTab()
     execute ":tabnew"
     execute ":tabnew"
