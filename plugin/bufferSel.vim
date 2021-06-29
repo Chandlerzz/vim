@@ -9,12 +9,29 @@ autocmd! bufNew * call Test()
 
 function! Test()
     execute "vsp /tmp/aa.chandler"
-    let aa=bufnr("aa.chandler",1)
-    call setbufline(aa,5,pwd)
+    let tabinfo = gettabinfo(".")
+    let tabnr = tabinfo[0].tabnr
+    let bufnr=bufnr("aa.chandler",1)
+    call setbufline(bufnr,1,pwd)
     execute "set winwidth=80"
     execute "normal \<C-L>"
-    let tabnr = gettabinfo(".")
     let pwd= getcwd()
+    let bufcount = bufnr("$")
+    let currbufnr = 1
+    let nummatches = 0
+    let firstmatchingbufnr = 0
+    while currbufnr <= bufcount
+    if(bufexists(currbufnr))
+      let currbufname = expand('#'.currbufnr.':p') 
+      if(match(currbufname, pwd) > -1)
+        let bufname = currbufnr . ": ".expand('#'.currbufnr.':p:.')
+        let nummatches += 1
+        call setbufline(tabnr,nummatches,bufname)
+        let firstmatchingbufnr = currbufnr
+      endif
+    endif
+    let currbufnr = currbufnr + 1
+    endwhile
 endfunction
 function! s:newTab()
     execute ":tabnew"
@@ -30,7 +47,6 @@ function! s:setTcd()
     let tabPageNr = tabpagenr()
     execute "tcd " .g:tabpath[tabPageNr-1]
 endfunction
-
 function! s:bufSel(pattern)
   let bufcount = bufnr("$")
   let currbufnr = 1
