@@ -5,11 +5,11 @@ nnoremap <expr> <expr>e SelectBuffer() ..'_'
 " nnoremap <expr> <F4><F4> CountSpaces() .. '_'
 nnoremap  <leader>bb :execute 'Bss'<CR>
 " nnoremap <leader>SetTcd :execute 'SetTcd'<CR>
-autocmd! bufNew * call BufferRead()
+autocmd! bufEnter,tabEnter * call BufferRead()
 
 function! BufferRead()
     let pwd= getcwd()
-    execute "!echo ".pwd." >/tmp/aa.chandler"
+    execute "silent !echo ".pwd." >/tmp/aa.chandler"
     let bufcount = bufnr("$")
     let currbufnr = 1
     let nummatches = 1
