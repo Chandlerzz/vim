@@ -9,13 +9,11 @@ autocmd! bufNew * call Test()
 
 function! Test()
     execute "vsp /tmp/aa.chandler"
-    let tabinfo = gettabinfo(".")
-    let tabnr = tabinfo[0].tabnr
+    execute "normal ggdG"
+    execute "hide"
+    let pwd= getcwd()
     let bufnr=bufnr("aa.chandler",1)
     call setbufline(bufnr,1,pwd)
-    execute "set winwidth=80"
-    execute "normal \<C-L>"
-    let pwd= getcwd()
     let bufcount = bufnr("$")
     let currbufnr = 1
     let nummatches = 0
@@ -26,7 +24,7 @@ function! Test()
       if(match(currbufname, pwd) > -1)
         let bufname = currbufnr . ": ".expand('#'.currbufnr.':p:.')
         let nummatches += 1
-        call setbufline(tabnr,nummatches,bufname)
+        call setbufline(bufnr,nummatches,bufname)
         let firstmatchingbufnr = currbufnr
       endif
     endif
