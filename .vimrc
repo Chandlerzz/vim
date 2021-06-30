@@ -3,8 +3,8 @@ set path+=/tmp
 set path+=~/todo
 set path+=~/man
 set path+=~/vim/plugin
-" set path+=/mnt/d/javascript_program/risentrain/applet-student/pages
-" set path+=/mnt/d/javascript_program/risentrain/vue-admin/src/views
+set path+=/mnt/d/javascript_program/risentrain/applet-student/pages
+set path+=/mnt/d/javascript_program/risentrain/vue-admin/src/views
 set path+=/mnt/d/javascript_program/risentrain/egg-server/app/route
 set path+=/mnt/d/javascript_program/risentrain/egg-server/app/controller
 "ctags config

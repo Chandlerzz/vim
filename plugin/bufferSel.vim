@@ -5,18 +5,14 @@ nnoremap <expr> <expr>e SelectBuffer() ..'_'
 " nnoremap <expr> <F4><F4> CountSpaces() .. '_'
 nnoremap  <leader>bb :execute 'Bss'<CR>
 " nnoremap <leader>SetTcd :execute 'SetTcd'<CR>
-autocmd! bufNew * call Test()
+autocmd! bufNew * call BufferRead()
 
-function! Test()
-    execute "vsp /tmp/aa.chandler"
-    execute "normal ggdG"
-    execute "hide"
+function! BufferRead()
     let pwd= getcwd()
-    let bufnr=bufnr("aa.chandler",1)
-    call setbufline(bufnr,1,pwd)
+    execute "!echo ".pwd." >/tmp/aa.chandler"
     let bufcount = bufnr("$")
     let currbufnr = 1
-    let nummatches = 0
+    let nummatches = 1
     let firstmatchingbufnr = 0
     while currbufnr <= bufcount
     if(bufexists(currbufnr))
@@ -24,7 +20,7 @@ function! Test()
       if(match(currbufname, pwd) > -1)
         let bufname = currbufnr . ": ".expand('#'.currbufnr.':p:.')
         let nummatches += 1
-        call setbufline(bufnr,nummatches,bufname)
+        execute "silent ! echo ".nummatches.bufname." >> /tmp/aa.chandler"
         let firstmatchingbufnr = currbufnr
       endif
     endif
