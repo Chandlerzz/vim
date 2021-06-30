@@ -1,4 +1,4 @@
-"" bufferSel
+" bufferSel
 nnoremap <expr> <expr>e SelectBuffer() ..'_'
 " xnoremap <expr> <F4> SelectBuffer()
 " doubling <F4> works on a line
@@ -21,7 +21,6 @@ function! BufferRead()
         let bufname = currbufnr . ": ".expand('#'.currbufnr.':p:.')
         let nummatches += 1
         execute "silent ! echo ".nummatches.bufname." >> /tmp/aa.chandler"
-        let firstmatchingbufnr = currbufnr
       endif
     endif
     let currbufnr = currbufnr + 1
