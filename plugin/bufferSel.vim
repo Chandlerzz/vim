@@ -20,7 +20,7 @@ function! BufferRead()
       if(match(currbufname, pwd) > -1)
         let bufname = currbufnr . ": ".expand('#'.currbufnr.':p:.')
         let nummatches += 1
-        execute "silent ! echo ".nummatches.bufname." >> /tmp/aa.chandler"
+        execute "silent ! echo ".bufname." >> /tmp/aa.chandler"
       endif
     endif
     let currbufnr = currbufnr + 1
