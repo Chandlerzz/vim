@@ -5,9 +5,10 @@ import json
 import os
 import re
 from mysql import mysql
-sql = mysql()
+"" getinfo login info
 name = vim.vars['sql_name']
 database = vim.vars['sql_database']
-sql.getcursor("chandler","dbooks")
+sql = mysql()
+sql.getcursor(name,database)
 EOF
 endfun
