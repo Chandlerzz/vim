@@ -12,3 +12,5 @@ sql = mysql()
 sql.getcursor(name,database)
 EOF
 endfun
+"click table name split window and show the info of create table info 
+"use operator function to parse the the sql snippets 
