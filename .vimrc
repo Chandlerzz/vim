@@ -1,4 +1,6 @@
 syntax on
+let g:sql_name = "univ_test"
+let g:sql_database = "university"
 set path+=/tmp
 set path+=~/todo
 set path+=~/man

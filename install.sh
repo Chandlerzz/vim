@@ -22,3 +22,5 @@ git clone https://tpope.io/vim/repeat.git
 [[ -L ~/.vim/autoload ]] || ln -s ~/vim/autoload ~/.vim/autoload 
 [[ -L ~/.vim/ftdetect ]] || ln -s ~/vim/ftdetect ~/.vim/ftdetect 
 [[ -L ~/.vim/syntax ]] || ln -s ~/vim/syntax ~/.vim/syntax 
+mkdir -p ~/.vim/pack/chandler/start 
+[[ -L ~/.vim/pack/chandler/start ]] || ln -s ~/vim/mysql ~/.vim/pack/chandler/start/mysql 
