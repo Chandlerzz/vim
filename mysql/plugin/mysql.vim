@@ -13,4 +13,8 @@ sql.getcursor(name,database)
 EOF
 endfun
 "click table name split window and show the info of create table info 
+fun! s:show_create_table()
+    login()
+    
+endfun
 "use operator function to parse the the sql snippets 
