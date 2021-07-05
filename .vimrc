@@ -1,14 +1,26 @@
 syntax on
+let g:tabpath = [
+            \"/mnt/d/javascript_program/risentrain/applet-student",
+            \"/mnt/d/javascript_program/risentrain/vue-admin",
+            \"/mnt/d/javascript_program/risentrain/egg-server"
+\]
+let g:globalpath = [
+            \"/tmp",
+            \"~/todo",
+            \"~/man",
+            \"~/vim"
+            \]
+let g:localpath = [
+            \"/mnt/d/javascript_program/risentrain/applet-student/pages",
+            \"/mnt/d/javascript_program/risentrain/egg-server/app",
+            \"/mnt/d/javascript_program/risentrain/egg-server/app/controller",
+            \]
 let g:sql_name = "univ_test"
 let g:sql_database = "university"
 set path+=/tmp
 set path+=~/todo
 set path+=~/man
 set path+=~/vim/plugin
-set path+=/mnt/d/javascript_program/risentrain/applet-student/pages
-set path+=/mnt/d/javascript_program/risentrain/vue-admin/src/views
-set path+=/mnt/d/javascript_program/risentrain/egg-server/app/route
-set path+=/mnt/d/javascript_program/risentrain/egg-server/app/controller
 "ctags config
 set tags=tags
 let g:Lf_ShortcutB='<leader>bn'

@@ -15,22 +15,30 @@ function! BufferRead()
     let nummatches = 1
     let firstmatchingbufnr = 0
     while currbufnr <= bufcount
-    if(bufexists(currbufnr))
-      let currbufname = expand('#'.currbufnr.':p') 
-      if(match(currbufname, pwd) > -1)
-        let bufname = currbufnr . ": ".expand('#'.currbufnr.':p:.')
-        let nummatches += 1
-        execute "silent ! echo ".bufname." >> /tmp/aa.chandler"
-      endif
-    endif
-    let currbufnr = currbufnr + 1
+        if(bufexists(currbufnr))
+          let currbufname = expand('#'.currbufnr.':p') 
+          if(match(currbufname, pwd) > -1)
+            let bufname = currbufnr . ": ".expand('#'.currbufnr.':p:.')
+            let nummatches += 1
+            execute "silent ! echo ".bufname." >> /tmp/aa.chandler"
+          endif
+        endif
+        let currbufnr = currbufnr + 1
     endwhile
+    set path = ""
+    for $gpath in g:globalpath
+        set path+=$gpath
+    endfor
+    for $lpath in g:localpath
+        if (match($lpath,pwd) > -1)
+             set path+=$lpath
+        endif
+    endfor
 endfunction
 function! s:newTab()
     execute ":tabnew"
     execute ":tabnew"
     let @b="-SetTcdgt"
-    let g:tabpath = ["/mnt/d/javascript_program/risentrain/applet-student","/mnt/d/javascript_program/risentrain/vue-admin","/mnt/d/javascript_program/risentrain/egg-server"]
 endfunction
 function! s:bufSelPwd()
     let pwd=getcwd()
