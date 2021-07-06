@@ -5,15 +5,21 @@ let g:tabpath = [
             \"/mnt/d/javascript_program/risentrain/egg-server"
 \]
 let g:globalpath = [
-            \"/tmp",
-            \"~/todo",
-            \"~/man",
-            \"~/vim"
+            \$HOME . "/todo",
+            \$HOME . "/man",
+            \$HOME . "/vim",
+            \$HOME . "/vim/plugin",
             \]
 let g:localpath = [
             \"/mnt/d/javascript_program/risentrain/applet-student/pages",
-            \"/mnt/d/javascript_program/risentrain/egg-server/app",
+            \"/mnt/d/javascript_program/risentrain/applet-student/component",
+            \"/mnt/d/javascript_program/risentrain/applet-student/functions",
+            \"/mnt/d/javascript_program/risentrain/egg-server/app/route",
+            \"/mnt/d/javascript_program/risentrain/egg-server/app/model",
             \"/mnt/d/javascript_program/risentrain/egg-server/app/controller",
+            \"/mnt/d/javascript_program/risentrain/vue-admin/src/views",
+            \"/mnt/d/javascript_program/risentrain/vue-admin/src/mixins",
+            \"/mnt/d/javascript_program/risentrain/vue-admin/src/components",
             \]
 let g:sql_name = "univ_test"
 let g:sql_database = "university"
