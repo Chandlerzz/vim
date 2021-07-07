@@ -9,7 +9,8 @@ autocmd! bufEnter,tabEnter * call BufferRead()
 
 function! BufferRead()
     let pwd= getcwd()
-    execute "silent !echo ".pwd." >/tmp/aa.chandler"
+    let $bufferListFileName = g:bufferListFileName
+    execute "silent !echo ".pwd." >" . $bufferListFileName
     let bufcount = bufnr("$")
     let currbufnr = 1
     let nummatches = 1
@@ -20,7 +21,7 @@ function! BufferRead()
           if(match(currbufname, pwd) > -1)
             let bufname = currbufnr . ": ".expand('#'.currbufnr.':p:.')
             let nummatches += 1
-            execute "silent ! echo ".bufname." >> /tmp/aa.chandler"
+            execute "silent ! echo ".bufname." >> " . $bufferListFileName
           endif
         endif
         let currbufnr = currbufnr + 1

@@ -1,4 +1,6 @@
 syntax on
+let g:bufferListFileName ="/tmp/bufferList.chandler"
+let g:LRCfileName = "tmp/LRC.chandler"
 let g:tabpath = [
             \"/mnt/d/javascript_program/risentrain/applet-student",
             \"/mnt/d/javascript_program/risentrain/vue-admin",
@@ -10,6 +12,9 @@ let g:globalpath = [
             \$HOME . "/vim",
             \$HOME . "/vim/plugin",
             \]
+for $gpath in g:globalpath
+    set path+=$gpath
+endfor
 let g:localpath = [
             \"/mnt/d/javascript_program/risentrain/applet-student/pages",
             \"/mnt/d/javascript_program/risentrain/applet-student/component",
@@ -23,10 +28,6 @@ let g:localpath = [
             \]
 let g:sql_name = "univ_test"
 let g:sql_database = "university"
-set path+=/tmp
-set path+=~/todo
-set path+=~/man
-set path+=~/vim/plugin
 "ctags config
 set tags=tags
 let g:Lf_ShortcutB='<leader>bn'
