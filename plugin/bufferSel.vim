@@ -6,7 +6,27 @@ nnoremap <expr> e SelectBuffer() ..'_'
 nnoremap  <leader>bb :execute 'Bss'<CR>
 " nnoremap <leader>SetTcd :execute 'SetTcd'<CR>
 autocmd! bufEnter,tabEnter * call BufferRead()
+autocmd! tabEnter * call TabPath()
+" autocmd! bufEnter * call LRCread()
 
+function! LRCread()
+    let pwd= getcwd()
+    let $lrcfilename = g:lrcfilename
+    let currbufnr = bufnr("%")
+    let currbufname = expand('#'.currbufnr.':p') 
+    execute "silent ! echo ".currbufname." >> " . $lrcfilename
+endfunction
+function! TabPath()
+    set path = ""
+    for $gpath in g:globalpath
+        set path+=$gpath
+    endfor
+    for $lpath in g:localpath
+        if (match($lpath,pwd) > -1)
+             set path+=$lpath
+        endif
+    endfor
+endfunction
 function! BufferRead()
     let pwd= getcwd()
     let $bufferListFileName = g:bufferListFileName
@@ -26,15 +46,6 @@ function! BufferRead()
         endif
         let currbufnr = currbufnr + 1
     endwhile
-    set path = ""
-    for $gpath in g:globalpath
-        set path+=$gpath
-    endfor
-    for $lpath in g:localpath
-        if (match($lpath,pwd) > -1)
-             set path+=$lpath
-        endif
-    endfor
 endfunction
 function! s:newTab()
     execute ":tabnew"
