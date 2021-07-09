@@ -22,6 +22,7 @@ let g:localpath = [
             \"/mnt/d/javascript_program/risentrain/egg-server/app/route",
             \"/mnt/d/javascript_program/risentrain/egg-server/app/model",
             \"/mnt/d/javascript_program/risentrain/egg-server/app/controller",
+            \"/mnt/d/javascript_program/risentrain/egg-server/app/service",
             \"/mnt/d/javascript_program/risentrain/vue-admin/src/views",
             \"/mnt/d/javascript_program/risentrain/vue-admin/src/mixins",
             \"/mnt/d/javascript_program/risentrain/vue-admin/src/components",

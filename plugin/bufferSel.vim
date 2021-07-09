@@ -15,20 +15,19 @@ function! LRCread()
     let currbufnr = bufnr("%")
     let currbufname = expand('#'.currbufnr.':p') 
     execute "silent ! echo ".currbufname." >> " . $lrcfilename
-    execute "e " . $lrcfilename
-    "用vim读取文件内容，判断行数，如果行数大于两百行删除第一行
-    "统计当前tab下最常用的文件
-    let lrcfilenamebufnr = bufnr("%")
-    let count = line('%') 
-    if count > 200
-        execute "normal ggdd"
-        execute "w"
-    endif
-    execute "e #" . $currbufnr
+    execute "silent !cat " .$lrcfilename ." | -c"
+    execute "silent ! sort ". $lrcfilename . " | uniq -c > /tmp/lrccount"
     let lines = getbufline(lrcfilenamebufnr,1,"$")
+
+    for line in lines
+        if(match(line,pwd)>-1)
+
+        endif
+    endfor
     "处理一下LRC
 endfunction
 function! TabPath()
+    let pwd= getcwd()
     set path = ""
     for $gpath in g:globalpath
         set path+=$gpath
