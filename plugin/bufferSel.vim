@@ -7,19 +7,15 @@ nnoremap  <leader>bb :execute 'Bss'<CR>
 " nnoremap <leader>SetTcd :execute 'SetTcd'<CR>
 autocmd! bufEnter,tabEnter * call BufferRead()
 autocmd! tabEnter * call TabPath()
-" autocmd! bufEnter * call LRCread()
+autocmd! bufEnter * call LRCread()
 
 function! LRCread()
     let pwd= getcwd()
-    let $lrcfilename = g:lrcfilename
+    let $lrcfilename = g:LRCfileName
     let currbufnr = bufnr("%")
     let currbufname = expand('#'.currbufnr.':p') 
     execute "silent ! echo ".currbufname." >> " . $lrcfilename
-    "todo shell script to count the lines if linecount >200, delete the first
-    "line
-    "todo count everypath 
-    execute "lines=$(silent !cat " .$lrcfilename ." | wc -l)"
-    execute "silent ! sort ". $lrcfilename . " | uniq -c > /tmp/lrccount"
+    execute "silent !sh ". expand("~/vim/script/LRC.sh") ." ". $lrcfilename
 endfunction
 function! TabPath()
     let pwd= getcwd()

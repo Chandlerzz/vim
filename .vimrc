@@ -1,6 +1,7 @@
 syntax on
 let g:bufferListFileName ="/tmp/bufferList.chandler"
-let g:LRCfileName = "tmp/LRC.chandler"
+let g:LRCfileName = "/tmp/LRC.chandler"
+let g:LRCcount = "/tmp/lrccount"
 let g:tabpath = [
             \"/mnt/d/javascript_program/risentrain/applet-student",
             \"/mnt/d/javascript_program/risentrain/vue-admin",
