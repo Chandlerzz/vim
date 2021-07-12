@@ -15,16 +15,11 @@ function! LRCread()
     let currbufnr = bufnr("%")
     let currbufname = expand('#'.currbufnr.':p') 
     execute "silent ! echo ".currbufname." >> " . $lrcfilename
-    execute "silent !cat " .$lrcfilename ." | -c"
+    "todo shell script to count the lines if linecount >200, delete the first
+    "line
+    "todo count everypath 
+    execute "lines=$(silent !cat " .$lrcfilename ." | wc -l)"
     execute "silent ! sort ". $lrcfilename . " | uniq -c > /tmp/lrccount"
-    let lines = getbufline(lrcfilenamebufnr,1,"$")
-
-    for line in lines
-        if(match(line,pwd)>-1)
-
-        endif
-    endfor
-    "处理一下LRC
 endfunction
 function! TabPath()
     let pwd= getcwd()
