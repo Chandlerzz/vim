@@ -3,11 +3,10 @@
 # todo count everypath 
 lrcfilename=$1
 lines=$(cat $lrcfilename  | wc -l)
-if [ "$lines" -gt "200" ];
+if [ "$lines" -gt "300" ];
     then sed -i "1d" $lrcfilename;
 fi
-sort $lrcfilename | uniq -c > /tmp/lrccount
-if [ -f "/tmp/lrccount1" ];
-then rm /tmp/lrccount1;
-fi
+
+#去重 统计数量  # 按数字排序  # 数字和名称置换列
+sort $lrcfilename | uniq -c | sort -nr | awk 'BEGIN{FS=" "} {print $2,$1}' > /tmp/lrccount 
 

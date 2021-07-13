@@ -5,17 +5,39 @@ nnoremap <expr> e SelectBuffer() ..'_'
 " nnoremap <expr> <F4><F4> CountSpaces() .. '_'
 nnoremap  <leader>bb :execute 'Bss'<CR>
 " nnoremap <leader>SetTcd :execute 'SetTcd'<CR>
-autocmd! bufEnter,tabEnter * call BufferRead()
-autocmd! tabEnter * call TabPath()
-autocmd! bufEnter * call LRCread()
+augroup bufferSel
+    au!
+    autocmd tabEnter * call TabPath()
+    autocmd bufEnter * call LRCread()
+    autocmd bufEnter,tabEnter * call BufferRead()
+augroup END
 
 function! LRCread()
     let pwd= getcwd()
+    let content = @a
+    let @a=pwd
     let $lrcfilename = g:LRCfileName
     let currbufnr = bufnr("%")
     let currbufname = expand('#'.currbufnr.':p') 
-    execute "silent ! echo ".currbufname." >> " . $lrcfilename
+    if (currbufname != "")
+        execute "silent ! echo ".currbufname." >> " . $lrcfilename
+    endif
     execute "silent !sh ". expand("~/vim/script/LRC.sh") ." ". $lrcfilename
+python3 << EOF
+import re
+import os
+import vim
+os.system("echo "+"LRC file" +">/tmp/lrccount1")
+with open("/tmp/lrccount") as f:
+    for line in f:
+        obj = {}
+        line = re.sub("\n","",line)
+        list1 = line.split(" ")
+        pwd=vim.eval("@a")
+        if re.match(pwd,list1[0]):
+            os.system("echo "+re.sub(pwd,"",list1[0])+">>/tmp/lrccount1")
+EOF
+let @a=content
 endfunction
 function! TabPath()
     let pwd= getcwd()
@@ -32,6 +54,7 @@ endfunction
 function! BufferRead()
     let pwd= getcwd()
     let $bufferListFileName = g:bufferListFileName
+    let g:test1 = $bufferListFileName
     execute "silent !echo ".pwd." >" . $bufferListFileName
     let bufcount = bufnr("$")
     let currbufnr = 1
