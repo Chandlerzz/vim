@@ -24,7 +24,7 @@ function! LRCread()
     endif
     let ignoreList = ["/.git","/tmp"]
     for  $ignoreItem in ignoreList
-        if (match($ignoreItem,$lrcfilename) < 0)
+        if (match($lrcfilename,$ignoreItem) < 0)
             execute "silent !sh ". expand("~/vim/script/LRC.sh") ." ". $lrcfilename
         endif
     endfor
