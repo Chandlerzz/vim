@@ -22,7 +22,12 @@ function! LRCread()
     if (currbufname != "")
         execute "silent ! echo ".currbufname." >> " . $lrcfilename
     endif
-    execute "silent !sh ". expand("~/vim/script/LRC.sh") ." ". $lrcfilename
+    let ignoreList = ["/.git","/tmp"]
+    for  $ignoreItem in ignoreList
+        if (match($ignoreItem,$lrcfilename) < 0)
+            execute "silent !sh ". expand("~/vim/script/LRC.sh") ." ". $lrcfilename
+        endif
+    endfor
 python3 << EOF
 import re
 import os
