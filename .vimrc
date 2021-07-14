@@ -28,8 +28,6 @@ let g:localpath = [
             \"/mnt/d/javascript_program/risentrain/vue-admin/src/mixins",
             \"/mnt/d/javascript_program/risentrain/vue-admin/src/components",
             \]
-let g:sql_name = "univ_test"
-let g:sql_database = "university"
 "ctags config
 set tags=tags
 let g:Lf_ShortcutB='<leader>bn'

@@ -1,20 +1,19 @@
+augroup mysql
+    au!
+    autocmd bufLeave *.vimrc call s:login()
+augroup END
 fun! s:login()
-python3 << EOF
-import vim
-import json
-import os
-import re
-from mysql import mysql
-"" getinfo login info
-name = vim.vars['sql_name']
-database = vim.vars['sql_database']
-sql = mysql()
-sql.getcursor(name,database)
-EOF
+    call s:sourceConfigFile()
+    let name = g:sql_name
+    let database = g:sql_database
+    let config = {"config":{"name": g:sql_name,"database": g:sql_database}}
+    let config = "hello"
+    let configStr = string(config)
+	let channel = ch_open('localhost:8765')
+	let response = ch_evalexpr(channel, configStr)
 endfun
-"click table name split window and show the info of create table info 
-fun! s:show_create_table()
-    login()
-    
+fun! s:showCreateTable()
 endfun
-"use operator function to parse the the sql snippets 
+func! s:sourceConfigFile()
+    execute "source %"
+endfun
