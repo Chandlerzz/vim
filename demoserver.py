@@ -19,10 +19,12 @@
 
 from __future__ import print_function
 import json
+import re
 import socket
 import sys
 import threading
 from mysql import mysql
+from IPython import embed
 
 try:
     # Python 3
@@ -34,7 +36,7 @@ except ImportError:
 thesocket = None
 sql = mysql()
 
-def login():
+def login(name,database):
     global sql
     sql.getcursor(name,database)
 
@@ -67,12 +69,22 @@ class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
             # Send a response if the sequence number is positive.
             # Negative numbers are used for "eval" responses.
             if decoded[0] >= 0:
-                deco=json.loads('"%s"' %decoded[1])
-                print(type(decoded[1])) 
+                embed()
+                decoded1 = re.sub("'","\"",decoded[1])
+                decoded1=json.loads(decoded1)
                 if decoded[1] == 'hello!':
+                    print(sql.tableNames)
                     response = "got it"
                     response = str(sql.tableNames)
-                elif decoded[1]:
+                elif "config" in decoded1.keys():
+                    name=decoded1['config']['name']
+                    database=decoded1['config']['database']
+                    login(name,database)
+                    print(sql.tableNames)
+                    response = "he"
+                elif "tableName" in decoded1.keys():
+                    name=decoded1['tableName']
+                    print(sql.tableNames)
                     response = "he"
                 else:
                     response = "what?"
