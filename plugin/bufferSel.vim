@@ -19,15 +19,16 @@ function! LRCread()
     let $lrcfilename = g:LRCfileName
     let currbufnr = bufnr("%")
     let currbufname = expand('#'.currbufnr.':p') 
-    if (currbufname != "")
+    if (currbufname == "")
+        execute "silent ! echo ".currbufname 
+    elseif (match(currbufname,"/tmp")> -1)
+        execute "silent ! echo ".currbufname
+    elseif (match(currbufname,"/.git")> -1)
+        execute "silent ! echo ".currbufname
+    else
         execute "silent ! echo ".currbufname." >> " . $lrcfilename
     endif
-    let ignoreList = ["/.git","/tmp"]
-    for  $ignoreItem in ignoreList
-        if (match($lrcfilename,$ignoreItem) < 0)
-            execute "silent !sh ". expand("~/vim/script/LRC.sh") ." ". $lrcfilename
-        endif
-    endfor
+    execute "silent !sh ". expand("~/vim/script/LRC.sh") ." ". $lrcfilename
 python3 << EOF
 import re
 import os
