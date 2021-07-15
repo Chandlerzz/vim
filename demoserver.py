@@ -1,21 +1,4 @@
 #!/usr/bin/python
-#
-# Server that will accept connections from a Vim channel.
-# Run this server and then in Vim you can open the channel:
-#  :let handle = ch_open('localhost:8765')
-#
-# Then Vim can send requests to the server:
-#  :let response = ch_sendexpr(handle, 'hello!')
-#
-# And you can control Vim by typing a JSON message here, e.g.:
-#   ["ex","echo 'hi there'"]
-#
-# There is no prompt, just type a line and press Enter.
-# To exit cleanly type "quit<Enter>".
-#
-# See ":help channel-demo" in Vim.
-#
-# This requires Python 2.6 or later.
 
 from __future__ import print_function
 import json
@@ -40,6 +23,12 @@ def login(name,database):
     global sql
     sql.getcursor(name,database)
 
+def showCreateTable(tablename):
+    global sql
+    query = "show create table " + tableNames + ";"
+    sql.cursor.execute(query)
+    createTableInfo = self.cursor.fetchall()
+    print(createTableInfo)
 class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
 
     def handle(self):
@@ -81,11 +70,11 @@ class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
                     database=decoded1['config']['database']
                     login(name,database)
                     print(sql.tableNames)
-                    response = "he"
+                    response = "haha"
                 elif "tableName" in decoded1.keys():
                     name=decoded1['tableName']
-                    print(sql.tableNames)
-                    response = "he"
+                    showCreateTable(name)
+                    response = "haha"
                 else:
                     response = "what?"
                 encoded = json.dumps([decoded[0], response])
@@ -125,3 +114,20 @@ if __name__ == "__main__":
 
     server.shutdown()
     server.server_close()
+
+# Server that will accept connections from a Vim channel.
+# Run this server and then in Vim you can open the channel:
+#  :let handle = ch_open('localhost:8765')
+#
+# Then Vim can send requests to the server:
+#  :let response = ch_sendexpr(handle, 'hello!')
+#
+# And you can control Vim by typing a JSON message here, e.g.:
+#   ["ex","echo 'hi there'"]
+#
+# There is no prompt, just type a line and press Enter.
+# To exit cleanly type "quit<Enter>".
+#
+# See ":help channel-demo" in Vim.
+#
+# This requires Python 2.6 or later.
