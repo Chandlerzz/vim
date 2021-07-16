@@ -3,10 +3,12 @@
 from __future__ import print_function
 import json
 import re
+import os
 import socket
 import sys
 import threading
 from mysql import mysql
+from functools import reduce
 from IPython import embed
 
 try:
@@ -28,7 +30,8 @@ def showCreateTable(tableName):
     query = "show create table " + tableName + ";"
     sql.cursor.execute(query)
     createTableInfo = sql.cursor.fetchall()
-    print(createTableInfo)
+    print(createTableInfo[0][1])
+    os.system("echo "+"\""+re.sub("`","\\\\`",createTableInfo[0][1])+"\"" +" > /tmp/createTableInfo.mysql")
 
 class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
 
@@ -67,7 +70,8 @@ class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
                     name=decoded1['config']['name']
                     database=decoded1['config']['database']
                     login(name,database)
-                    print(sql.tableNames)
+                    for item in sql.tableNames:
+                        os.system("echo " + item + " >> /tmp/tables.mysql")
                     response = "haha"
                 elif "tableName" in decoded1.keys():
                     name=decoded1['tableName']

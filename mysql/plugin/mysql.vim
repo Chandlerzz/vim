@@ -17,6 +17,7 @@ fun! s:showCreateTable()
     let g:test = tableName
 	let channel = ch_open('localhost:8765')
 	let response = ch_evalexpr(channel, tableNameStr)
+    execute "split /tmp/createTableInfo.mysql"
 endfun
 func! s:sourceConfigFile()
     execute "source %"
