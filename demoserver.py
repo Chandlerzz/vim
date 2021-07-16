@@ -23,12 +23,13 @@ def login(name,database):
     global sql
     sql.getcursor(name,database)
 
-def showCreateTable(tablename):
+def showCreateTable(tableName):
     global sql
-    query = "show create table " + tableNames + ";"
+    query = "show create table " + tableName + ";"
     sql.cursor.execute(query)
-    createTableInfo = self.cursor.fetchall()
+    createTableInfo = sql.cursor.fetchall()
     print(createTableInfo)
+
 class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
 
     def handle(self):
@@ -58,13 +59,10 @@ class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
             # Send a response if the sequence number is positive.
             # Negative numbers are used for "eval" responses.
             if decoded[0] >= 0:
-                embed()
                 decoded1 = re.sub("'","\"",decoded[1])
                 decoded1=json.loads(decoded1)
                 if decoded[1] == 'hello!':
-                    print(sql.tableNames)
                     response = "got it"
-                    response = str(sql.tableNames)
                 elif "config" in decoded1.keys():
                     name=decoded1['config']['name']
                     database=decoded1['config']['database']

@@ -13,37 +13,21 @@ augroup bufferSel
 augroup END
 
 function! LRCread()
-    let pwd= getcwd()
-    let content = @a
-    let @a=pwd
+    let $pwd= getcwd()
     let $lrcfilename = g:LRCfileName
     let currbufnr = bufnr("%")
     let currbufname = expand('#'.currbufnr.':p') 
     if (currbufname == "")
-        execute "silent ! echo ".currbufname 
+        execute "" 
     elseif (match(currbufname,"/tmp")> -1)
-        execute "silent ! echo ".currbufname
+        execute "" 
     elseif (match(currbufname,"/.git")> -1)
-        execute "silent ! echo ".currbufname
+        execute "" 
     else
-        execute "silent ! echo ".currbufname." >> " . $lrcfilename
+          execute "silent ! echo ".currbufname." >> " . $lrcfilename
     endif
-    execute "silent !sh ". expand("~/vim/script/LRC.sh") ." ". $lrcfilename
-python3 << EOF
-import re
-import os
-import vim
-os.system("echo "+"LRC file" +">/tmp/lrccount1")
-with open("/tmp/lrccount") as f:
-    for line in f:
-        obj = {}
-        line = re.sub("\n","",line)
-        list1 = line.split(" ")
-        pwd=vim.eval("@a")
-        if re.match(pwd,list1[0]):
-            os.system("echo "+re.sub(pwd,"",list1[0])+">>/tmp/lrccount1")
-EOF
-let @a=content
+    let job = job_start("sh ". expand("~/vim/script/LRC.sh") ." ". $lrcfilename ." " . $pwd,
+                \ {"in_io": "null", "out_io": "null", "err_io": "null"})
 endfunction
 function! TabPath()
     let pwd= getcwd()
