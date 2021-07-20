@@ -77,6 +77,10 @@ class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
                     name=decoded1['tableName']
                     showCreateTable(name)
                     response = "haha"
+                elif "stmt" in decoded1.keys():
+                    name=decoded1['stmt']
+                    showCreateTable(name)
+                    response = "haha"
                 else:
                     response = "what?"
                 encoded = json.dumps([decoded[0], response])

@@ -1,5 +1,5 @@
-nnoremap <silent> <buffer> <localleader>c :execute "BBB"<cr>
-let g:test = 111
+nnoremap <silent> <buffer> <localleader>c :execute "ShowCreateTable"<cr>
+xnoremap <silent> <expr> <localleader>v  QueryResult() 
 
 if exists("b:current_syntax")
   finish
