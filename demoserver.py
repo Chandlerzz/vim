@@ -75,12 +75,14 @@ class ThreadedTCPRequestHandler(socketserver.BaseRequestHandler):
                     response = "haha"
                 elif "tableName" in decoded1.keys():
                     name=decoded1['tableName']
-                    showCreateTable(name)
+                    try:
+                        showCreateTable(name)
+                    except Exception as e:
+                        login(name,database)
+                        showCreateTable(name)
                     response = "haha"
                 elif "stmt" in decoded1.keys():
-                    name=decoded1['stmt']
-                    showCreateTable(name)
-                    response = "haha"
+                    pass
                 else:
                     response = "what?"
                 encoded = json.dumps([decoded[0], response])

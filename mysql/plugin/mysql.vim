@@ -12,13 +12,13 @@ fun! s:login()
 	let response = ch_evalexpr(channel, configStr)
     let stmt = "\"quit;\""
     let g:stmt = stmt
-    execute " !expect /home/chandler/vim/mysql/mysql_expect " . stmt
+    execute "silent !expect /home/chandler/vim/mysql/mysql_expect " . stmt
     let stmt1 = "\"mymysql " . name. "\""
     let g:stmt1 = stmt1
-    execute " !expect /home/chandler/vim/mysql/mysql_expect " . stmt1
+    execute "silent !expect /home/chandler/vim/mysql/mysql_expect " . stmt1
     let stmt2 = "\"use " . database. ";\""
     let g:stmt2 = stmt2
-    execute " !expect /home/chandler/vim/mysql/mysql_expect " . stmt2
+    execute "silent !expect /home/chandler/vim/mysql/mysql_expect " . stmt2
     
 endfun
 fun! s:showCreateTable()
