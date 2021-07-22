@@ -1,15 +1,25 @@
 augroup mysql
     au!
-    autocmd bufLeave *.vimrc call s:login()
+    autocmd bufLeave mysql.vimrc call s:login()
 augroup END
 fun! s:login()
-    call s:sourceConfigFile()
+    execute "source ~/vim/mysql.vimrc"
     let name = g:sql_name
     let database = g:sql_database
     let config = {"config":{"name": g:sql_name,"database": g:sql_database}}
     let configStr = string(config)
 	let channel = ch_open('localhost:8765')
 	let response = ch_evalexpr(channel, configStr)
+    let stmt = "\"quit;\""
+    let g:stmt = stmt
+    execute " !expect /home/chandler/vim/mysql/mysql_expect " . stmt
+    let stmt1 = "\"mymysql " . name. "\""
+    let g:stmt1 = stmt1
+    execute " !expect /home/chandler/vim/mysql/mysql_expect " . stmt1
+    let stmt2 = "\"use " . database. ";\""
+    let g:stmt2 = stmt2
+    execute " !expect /home/chandler/vim/mysql/mysql_expect " . stmt2
+    
 endfun
 fun! s:showCreateTable()
     let tableName = {"tableName":expand("<cword>")}
@@ -38,8 +48,10 @@ fun! QueryResult(type = '')abort
     let stmt = {"stmt":getreg('"')} 
     let stmt = getreg('"')
     let stmt = substitute(stmt,"\\n","","g")
-    let stmt = substitute(stmt," \b\+"," ","g")
-    let g:test = stmt
+    let stmt = substitute(stmt,"\\s\\+"," ","g")
+    execute "silent !expect /home/chandler/vim/mysql/mysql_expect " . "\"" .stmt."\""
+    execute "silent !tmux select-window -t mysql"
+    execute "redraw!"
   finally
     call setreg('"', reg_save)
     call setpos("'<", visual_marks_save[0])
@@ -75,3 +87,4 @@ func! s:sourceConfigFile()
 endfun
 
 command! -nargs=0 ShowCreateTable :call s:showCreateTable()
+command! -nargs=0 LoginMysql :call s:login()
