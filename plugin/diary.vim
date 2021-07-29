@@ -19,6 +19,7 @@ function s:diary() abort
     let diary = system("date +'%Y/%m/%d'")
     let $diarypath = "~/report/" . diary
     let $diarypath1=$diarypath[:18]
+    execute "redraw!"
     silent !bash $HOME/script/bash_script/diary.sh
     execute "split" $diarypath1
 endfunction
@@ -27,6 +28,7 @@ function s:DiaryBefore() abort
     let diary = system("date +'%Y/%m/%d'")
     let $diarypath = "~/report/" . diary
     let $diarypath1=$diarypath[:18]
+    execute "redraw!"
     silent !bash $HOME/script/bash_script/diary.sh
 endfunction
 
