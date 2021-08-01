@@ -12,7 +12,7 @@ let s:cpo_save = &cpo
 set cpo&vim
 
 
-syn keyword javaScriptCommentTodo      TODO FIXME XXX TBD contained
+syn keyword javaScriptCommentTodo      TODO contained
 syn keyword javaScriptConditional       DONE	
 
 " Define the default highlighting.
@@ -27,5 +27,7 @@ if main_syntax == 'diary'
 endif
 let &cpo = s:cpo_save
 unlet s:cpo_save
+setlocal nonumber
+setlocal norelativenumber
 
 " vim: ts=8
