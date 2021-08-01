@@ -1,18 +1,14 @@
+" program diary
+" Fri 30 Jul 2021 04:41:57 PM CST
+" 文件尾缀为.diary
+" 第一种排序为按照顺序
+" 第二种排序为按照 done todo 排序
+" 在两种排序中转换
+" 状态 done 已完成 todo 未完成
+" done 后面跟日期 日期格式为 30/07/21
+" color: done blue todo white
 nnoremap <leader>dv :DiaryBefore<CR>:split $diarypath1<CR>:set nonumber<CR>:set norelativenumber<CR>
 "nnoremap <leader>dv :execute "Diary"<CR>
-
-" Manual file myself Usage:Man myself
-function s:Man(file) abort
-  let $file = a:file
-  let $file1 = "~/man/" . $file  
-  execute "vsplit" $file1
-endfunction
-
-function s:Todo(file) abort
-  let $file = a:file
-  let $file1 = "~/todo/" . $file  
-  execute "vsplit" $file1
-endfunction
 
 "Dairy every day record what stuff you have done today
 function s:diary() abort
@@ -34,6 +30,4 @@ endfunction
 
 command -nargs=0  Diary call s:diary() 
 command -nargs=0  DiaryBefore  call s:DiaryBefore() 
-command -nargs=1 -complete=file Man call s:Man(<f-args>)
-command -nargs=1 -complete=file Todo  call s:Todo(<f-args>) 
 
