@@ -24,3 +24,4 @@ git clone https://tpope.io/vim/repeat.git
 [[ -L ~/.vim/syntax ]] || ln -s ~/vim/syntax ~/.vim/syntax 
 mkdir -p ~/.vim/pack/chandler/start 
 [[ -L ~/.vim/pack/chandler/start ]] || ln -s ~/vim/mysql ~/.vim/pack/chandler/start/mysql 
+[[ -L ~/.vim/pack/chandler/start ]] || ln -s ~/vim/diary ~/.vim/pack/chandler/start/diary 
