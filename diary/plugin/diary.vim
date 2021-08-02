@@ -8,9 +8,9 @@
 " done 后面跟日期 日期格式为 30/07/21
 " color: done blue todo white
 nnoremap <leader>dv :Diary<CR>
+
 function s:sort(state) abort
   let state = a:state
-  let line = getline()
   let lineCount = line("$")
   let currlinenr = 1
   let nummatches = 0
@@ -22,6 +22,21 @@ function s:sort(state) abort
       endif
     let currlinenr = currlinenr + 1
   endwhile
+endfunction
+
+function s:restore() abort
+  let lineCount = line("$")
+  let currlinenr = 1
+  let nummatches = 0
+  while currlinenr <= lineCount
+      if() 
+          "提取数字 对数字进行排序
+          "如果没有数字设数字为0
+          let nummatches =nummatches + 1 
+      endif
+    let currlinenr = currlinenr + 1
+  endwhile
+
 endfunction
 
 function s:diary() abort
