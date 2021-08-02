@@ -12,12 +12,12 @@ let s:cpo_save = &cpo
 set cpo&vim
 
 
-syn keyword javaScriptCommentTodo      TODO contained
-syn keyword javaScriptConditional       DONE	
+syn keyword javaScriptCommentTodo      TODO 
+syn keyword javaScriptConditional       DONE 	
 
 " Define the default highlighting.
 " Only when an item doesn't have highlighting yet
-hi def link javaScriptCommentTodo		Todo
+hi def link javaScriptCommentTodo	  GruvboxFg3  	
 hi def link javaScriptConditional		Conditional
 
 
