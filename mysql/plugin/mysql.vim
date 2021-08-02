@@ -3,7 +3,7 @@ augroup mysql
     autocmd bufLeave mysql.vimrc call s:login()
 augroup END
 fun! s:login()
-    execute "source ~/vim/mysql.vimrc"
+    execute "source ~/mysql/mysql.vimrc"
     let name = g:sql_name
     let database = g:sql_database
     let config = {"config":{"name": g:sql_name,"database": g:sql_database}}
