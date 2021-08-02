@@ -8,7 +8,21 @@
 " done 后面跟日期 日期格式为 30/07/21
 " color: done blue todo white
 nnoremap <leader>dv :Diary<CR>
-
+function s:sort(state) abort
+  let state = a:state
+  let line = getline()
+  let lineCount = line("$")
+  let currlinenr = 1
+  let nummatches = 0
+  while currlinenr <= lineCount
+      if(match(getline(currlinenr),state)) 
+          let nummatches =nummatches + 1 
+          let result = setline(nummatches,getline(currlinenr))
+          let result = setline(currlinenr,"")
+      endif
+    let currlinenr = currlinenr + 1
+  endwhile
+endfunction
 
 function s:diary() abort
     let diary = system("date +'%Y/%m/%d'")
@@ -22,4 +36,3 @@ function s:diary() abort
 endfunction
 
 command -nargs=0  Diary call s:diary() 
-
