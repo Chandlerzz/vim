@@ -15,6 +15,7 @@ function s:sort(state) abort
   let currlinenr = 1
   let nummatches = 0
   while currlinenr <= lineCount
+      "
       if(match(getline(currlinenr),state)) 
           let nummatches =nummatches + 1 
           let result = setline(nummatches,getline(currlinenr))
@@ -29,10 +30,13 @@ function s:restore() abort
   let currlinenr = 1
   let nummatches = 0
   while currlinenr <= lineCount
-      if() 
+      if(1) 
+       let digits = system(" perl -e 'my $str = qq(".getline(currlinenr)."); my ($first_num) = $str =~ /([0-9]\+[.]\?[0-9]\?)/; print $first_num;'")
+       echo digits
+          "[1-9.]\+"
           "提取数字 对数字进行排序
           "如果没有数字设数字为0
-          let nummatches =nummatches + 1 
+          let nummatches = nummatches + 1 
       endif
     let currlinenr = currlinenr + 1
   endwhile
@@ -51,3 +55,4 @@ function s:diary() abort
 endfunction
 
 command -nargs=0  Diary call s:diary() 
+command -nargs=0  Restore call s:restore() 
