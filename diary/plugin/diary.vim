@@ -28,19 +28,19 @@ function s:restore() abort
   let lineCount = line("$")
   let currlinenr = 1
   let nummatches = 0
+  let sortlist = []
   while currlinenr <= lineCount
-      if(1) 
-       let digits = system(" perl -e 'my $str = qq(".getline(currlinenr)."); my ($first_num) = $str =~ /([0-9]\+[.]\?[0-9]\?)/; print $first_num;'")
-       echo digits
-          "提取数字 对数字进行排序
-          "如果没有数字设数字为0
-          "学习一下插入排序
-          "利用插入排序
-          let nummatches = nummatches + 1 
-      endif
+   let digits = system(" perl -e 'my $str = qq(".getline(currlinenr)."); my ($first_num) = $str =~ /([0-9]\+[.]\?[0-9]\?)/; print $first_num;'")
+   if (digits != "")
+         add(sortlist,[currlinenr,digits])
+   endif
+      "提取数字 对数字进行排序
+      "如果没有数字设数字为0
+      "学习一下插入排序
+      "利用插入排序
     let currlinenr = currlinenr + 1
   endwhile
-
+ echo sortlist
 endfunction
 
 function s:diary() abort
