@@ -17,30 +17,39 @@ function s:sort(state) abort
   while currlinenr <= lineCount
       if(match(getline(currlinenr),state)) 
           let nummatches =nummatches + 1 
-          let result = setline(nummatches,getline(currlinenr))
+          let result = setline(lineCount + nummatches,getline(currlinenr))
           let result = setline(currlinenr,"")
       endif
     let currlinenr = currlinenr + 1
   endwhile
+  execute "g/^$/d"
 endfunction
 
 function s:restore() abort
-  let lineCount = line("$")
-  let currlinenr = 1
-  let nummatches = 0
-  let sortlist = []
-  while currlinenr <= lineCount
-   let digits = system(" perl -e 'my $str = qq(".getline(currlinenr)."); my ($first_num) = $str =~ /([0-9]\+[.]\?[0-9]\?)/; print $first_num;'")
-   if (digits != "")
-         add(sortlist,[currlinenr,digits])
-   endif
-      "提取数字 对数字进行排序
-      "如果没有数字设数字为0
-      "学习一下插入排序
-      "利用插入排序
-    let currlinenr = currlinenr + 1
-  endwhile
- echo sortlist
+    let lineCount = line("$")
+    let currlinenr = 1
+    let nummatches = 0
+    let sourcelist = []
+    while currlinenr <= lineCount
+        let digits = system(" perl -e 'my $str = qq(" . getline(currlinenr) . "); my ($first_num) = $str =~ /([0-9]\+[.]\?[0-9]\?)/; print $first_num;'")
+        if (digits != "")
+            let nulls =  add(sourcelist,[currlinenr,digits,getline(currlinenr)])
+        endif
+        let currlinenr = currlinenr + 1
+    endwhile
+    for i in range(len(sourcelist))
+        let value = sourcelist[i][1] 
+        let key = sourcelist[i]
+        let j = i-1
+        while j >=0 && value < sourcelist[j][1] 
+           let sourcelist[j+1] = sourcelist[j] 
+           let j = j - 1
+           let sourcelist[j+1] = key 
+        endwhile
+    endfor
+    for i in range(len(sourcelist))
+        let nulls = setline(i+1,sourcelist[i][2])
+    endfor
 endfunction
 
 function s:diary() abort
@@ -54,5 +63,6 @@ function s:diary() abort
     execute "redraw!"
 endfunction
 
-command -nargs=0  Diary call s:diary() 
-command -nargs=0  Restore call s:restore() 
+command -nargs=0  Diary        call s:diary() 
+command -nargs=0  RestoreDiary call s:restore() 
+command -nargs=1  SortDiary    call s:sort("<args>")
