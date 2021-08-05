@@ -29,5 +29,7 @@ let &cpo = s:cpo_save
 unlet s:cpo_save
 setlocal nonumber
 setlocal norelativenumber
+nnoremap <localleader>c :execute 'DiaryState'<CR>
+noremap <localleader>v :<C-U><C-R>=printf("DiarySort %s ", expand("<cword>"))<CR>
 
 " vim: ts=8

@@ -9,6 +9,23 @@
 " color: done blue todo white
 nnoremap <leader>dv :Diary<CR>
 
+function s:statemachine() abort
+    let currentword=expand("<cword>")
+    let content=getline('.')
+    if (currentword == "TODO")
+        let diary = system("date +'%Y/%m/%d'")
+        let content = substitute(content,"TODO","DONE","")
+        let content = content . diary
+        let nulls = setline('.',content)
+        execute "%s\/[\\x0]\/\/g"
+    endif
+    if (currentword == "DONE")
+    let content = system(" perl -e 'my $str = qq(" . content . "); $str =~ s/([0-9]\+[\\\/][0-9]\+[\\\/][0-9]\+)//; print $str;'")
+        let content = substitute(content,"DONE","TODO","")
+        let nulls = setline('.',content)
+    endif
+endfunction
+
 function s:sort(state) abort
   let state = a:state
   let lineCount = line("$")
@@ -64,5 +81,6 @@ function s:diary() abort
 endfunction
 
 command -nargs=0  Diary        call s:diary() 
-command -nargs=0  RestoreDiary call s:restore() 
-command -nargs=1  SortDiary    call s:sort("<args>")
+command -nargs=0  DiaryRestore call s:restore() 
+command -nargs=1  DiarySort    call s:sort("<args>")
+command -nargs=0  DiaryState    call s:statemachine()
