@@ -27,7 +27,6 @@ int main(void)
     regex_t preg;
     char *pattern = "([0-9]+[.]\?[0-9]*)";
     int rc;
-    INSERT *insert;
   	size_t     nmatch = 1;
     regmatch_t pmatch[1];
     FILE *fp;
@@ -36,7 +35,7 @@ int main(void)
        printf("regcomp() failed, returning nonzero (%d)", rc);                  
        exit(1);                                                                 
     }
-    fp = fopen("/home/chandler/report/2021/08/05.diary","r");
+    fp = fopen("/tmp/aa.json","r");
     if (NULL ==fp)
     {
         return -1;
@@ -45,6 +44,7 @@ int main(void)
 	char *result;
     while(!feof(fp))
     {
+        INSERT insert;
         if (fgets(msg,100,fp) == NULL)
             printf("fgets error");
         else
@@ -54,6 +54,9 @@ int main(void)
 		   }
 		   else {
 				result = substring(msg, pmatch[0].rm_so,pmatch[0].rm_eo - pmatch[0].rm_so);
+                insert.content = result;
+                printf("%p",insert.content);
+                printf("%p",result);
 				printf("%s",result);
 		   } 
     }
