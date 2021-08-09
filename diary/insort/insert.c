@@ -27,6 +27,7 @@ int main(void)
     regex_t preg;
     char *pattern = "([0-9]+[.]\?[0-9]*)";
     int rc;
+    int i = 0;
   	size_t     nmatch = 1;
     regmatch_t pmatch[1];
     FILE *fp;
@@ -53,11 +54,10 @@ int main(void)
 				 msg, pattern, rc);
 		   }
 		   else {
-				result = substring(msg, pmatch[0].rm_so,pmatch[0].rm_eo - pmatch[0].rm_so);
-                insert.content = result;
-                printf("%p",insert.content);
-                printf("%p",result);
-				printf("%s",result);
+				insert.content = substring(msg, pmatch[0].rm_so,pmatch[0].rm_eo - pmatch[0].rm_so);
+                i++;
+                insert.id = i;
+                printf("%d%s",insert.id,insert.content);
 		   } 
     }
     fclose(fp);
