@@ -22,12 +22,26 @@ char* substring(char* ch,int pos,int length)
     subch[length]='\0';//加上字符串结束符。  
     return subch;       //返回分配的字符数组地址。  
 } 
+INSERT* genlist(INSERT* ptr, int i, INSERT insert)
+{
+    if(i == 1)
+    {
+        ptr = malloc(sizeof *ptr);
+    }
+    else
+    {
+        ptr = realloc(ptr,sizeof *ptr *i);
+    }
+    ptr[i-1] = insert;
+    return ptr;
+}
+
 int main(void)
 {
     regex_t preg;
     char *pattern = "([0-9]+[.]\?[0-9]*)";
     int rc;
-    int i = 0;
+    int arrlen = 0;
   	size_t     nmatch = 1;
     regmatch_t pmatch[1];
     FILE *fp;
@@ -42,7 +56,7 @@ int main(void)
         return -1;
     }
     char msg[100];
-	char *result;
+    INSERT *ptr;
     while(!feof(fp))
     {
         INSERT insert;
@@ -55,10 +69,14 @@ int main(void)
 		   }
 		   else {
 				insert.content = substring(msg, pmatch[0].rm_so,pmatch[0].rm_eo - pmatch[0].rm_so);
-                i++;
-                insert.id = i;
-                printf("%d%s",insert.id,insert.content);
+                arrlen++;
+                insert.id = arrlen;
+                ptr = genlist(ptr,arrlen,insert);
 		   } 
+    }
+    for(int i =0; i<arrlen;i++)
+    {
+       var * value = ptr[i].content
     }
     fclose(fp);
     fp = NULL;
