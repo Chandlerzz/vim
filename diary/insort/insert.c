@@ -76,7 +76,20 @@ int main(void)
     }
     for(int i =0; i<arrlen;i++)
     {
-       var * value = ptr[i].content
+      float value = atof(ptr[i].content);
+      INSERT key = ptr[i];
+      int j = i -1;
+      while (j>=0 && value < atof(ptr[j].content))
+      {
+          ptr[j+1] = ptr[j];
+          j = j-1;
+          ptr[j+1] = key;
+
+      }
+    }
+    for (int i = 0;i<arrlen;i++)
+    {
+        printf("%s\n",ptr[i].content);
     }
     fclose(fp);
     fp = NULL;
