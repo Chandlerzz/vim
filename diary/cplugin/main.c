@@ -3,6 +3,7 @@
 #include <regex.h>
 #include <locale.h>  
 #include <stdlib.h>
+#include <string.h>
 
 
 int main(int argc,char *argv[])
@@ -25,10 +26,10 @@ int main(int argc,char *argv[])
     {
         return -1;
     }
-    char msg[100];
     INSERT *ptr;
     while(!feof(fp))
     {
+        char msg[100];
         INSERT insert;
         if (fgets(msg,100,fp) == NULL)
             printf("fgets error");
@@ -41,6 +42,7 @@ int main(int argc,char *argv[])
 				insert.content = substring(msg, pmatch[0].rm_so,pmatch[0].rm_eo - pmatch[0].rm_so);
                 arrlen++;
                 insert.id = arrlen;
+                /* insert.msg = strcpy(insert.msg,msg); */
                 ptr = genlist(ptr,arrlen,insert);
 		   } 
     }
@@ -57,6 +59,22 @@ int main(int argc,char *argv[])
 
       }
     }
+    for(int i =0; i<arrlen;i++)
+    {
+        printf("%s",ptr[i].msg);
+    }
+    /* FILE *fptmp; */
+    /* fptmp = fopen("/tmp/test","w"); */
+    /* if(fptmp == NULL) */
+    /* { */
+    /*     return 1; */
+    /* } */
+    /* for(int i =0; i<arrlen;i++) */
+    /* { */
+    /*     fputs(ptr[i].msg,fptmp); */
+    /* } */
+    /* fclose(fptmp); */
+    /* fptmp = NULL; */
     fclose(fp);
     fp = NULL;
     return 0;
