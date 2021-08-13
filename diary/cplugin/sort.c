@@ -21,7 +21,7 @@ char* substring(char* ch,int pos,int length)
     return subch;       //返回分配的字符数组地址。  
 } 
 
-LINE* genlist(LINE* ptr, int i, LINE line)
+LINE* genlist(LINE* ptr, int i, LINE *line)
 {
     if(i == 1)
     {
@@ -31,6 +31,5 @@ LINE* genlist(LINE* ptr, int i, LINE line)
     {
         ptr = realloc(ptr,sizeof *ptr *i);
     }
-    ptr[i-1] = line;
     return ptr;
 }
