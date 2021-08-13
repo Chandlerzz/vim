@@ -1,7 +1,7 @@
-typedef struct insert{
+typedef struct line{
     int     id;
     char    *content;
     char    *msg;
-} INSERT;
+} LINE;
 extern char* substring(char* ch,int pos,int length); 
-extern INSERT* genlist(INSERT* ptr, int i, INSERT insert);
+extern LINE* genlist(LINE* ptr, int i, INSERT line);
