@@ -21,15 +21,7 @@ char* substring(char* ch,int pos,int length)
     return subch;       //返回分配的字符数组地址。  
 } 
 
-LINE* genlist(LINE* ptr, int i, LINE *line)
+LINE *lalloc(void)
 {
-    if(i == 1)
-    {
-        ptr = malloc(sizeof *ptr);
-    }
-    else
-    {
-        ptr = realloc(ptr,sizeof *ptr *i);
-    }
-    return ptr;
+    return (LINE *)malloc(sizeof(LINE));
 }
