@@ -25,3 +25,20 @@ LINE *lalloc(void)
 {
     return (LINE *)malloc(sizeof(LINE));
 }
+
+void insertSort(LINE * lines[], int count)
+{
+    for(int i =0; i<count;i++)
+    {
+      float value = atof(lines[i]->content);
+      LINE *key = lines[i];
+      int j = i -1;
+      while (j>=0 && value < atof(lines[j]->content))
+      {
+          lines[j+1] = lines[j];
+          j = j-1;
+          lines[j+1] = key;
+
+      }
+    }
+}

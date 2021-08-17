@@ -68,6 +68,13 @@ function s:restore() abort
         let nulls = setline(i+1,sourcelist[i][2])
     endfor
 endfunction
+function s:restorecplugin() abort
+    let $pwd= getcwd()
+    execute "silent !insertsort ".$pwd
+    execute "redraw!"
+    execute "e!"
+
+endfunction
 
 function s:diary() abort
     let diary = system("date +'%Y/%m/%d'")
@@ -82,5 +89,6 @@ endfunction
 
 command -nargs=0  Diary        call s:diary() 
 command -nargs=0  DiaryRestore call s:restore() 
+command -nargs=0  DiaryRestoreCplugin call s:restore() 
 command -nargs=1  DiarySort    call s:sort("<args>")
 command -nargs=0  DiaryState    call s:statemachine()

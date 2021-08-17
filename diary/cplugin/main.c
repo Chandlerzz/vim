@@ -43,19 +43,27 @@ int main(int argc,char *argv[])
             count++;
        } 
     }
-    for(int i =0; i<count;i++)
+    fclose(fp);
+    fp = NULL;
+    /* insertsort */
+    insertSort(lines,count);
+    /* generate tmp file */
+    if ((fp = fopen ("/tmp/report", "w+")) == NULL)
     {
-      float value = atof(lines[i]->content);
-      LINE *key = lines[i];
-      int j = i -1;
-      while (j>=0 && value < atof(lines[j]->content))
-      {
-          lines[j+1] = lines[j];
-          j = j-1;
-          lines[j+1] = key;
-
-      }
+       perror ("File open error!\n");
+       exit (1);
     }
+    for(int i=0; i<count;i++){
+        fputs(lines[i]->msg,fp);
+    }
+    fclose(fp);
+    fp = NULL;
+    /* rm the source file */
+    if(remove(*argv) == 0){
+        printf("已经删除");
+    };
+    /* rename the tmp file to the source file */
+    rename("/tmp/report",*argv);
     return 0;
 }
 
